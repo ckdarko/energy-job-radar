@@ -55,6 +55,54 @@ def parse_date(value: Optional[str]) -> Optional[str]:
     return value[:10] if re.match(r"^\d{4}-\d{2}-\d{2}", value) else value
 
 
+def is_http_url(value: Optional[str]) -> bool:
+    if not value:
+        return False
+    return str(value).strip().lower().startswith(("http://", "https://"))
+
+
+def fallback_job_search_url(job: Dict[str, Any]) -> str:
+    """Create a safe fallback link when a source does not provide a direct posting URL."""
+    query = " ".join(
+        str(job.get(field, "")).strip()
+        for field in ("title", "company", "location")
+        if str(job.get(field, "")).strip()
+    )
+    query = f"{query} job posting".strip() or "energy job posting"
+    return "https://www.google.com/search?" + urlencode({"q": query})
+
+
+def ensure_job_url(job: Dict[str, Any]) -> Dict[str, Any]:
+    """Guarantee every job has a clickable URL and mark whether it is direct."""
+    # If a job is already marked as a search fallback, keep that label even though
+    # the fallback itself is a valid Google URL.
+    if job.get("link_type") == "search" or job.get("direct_url") is False:
+        if not is_http_url(job.get("url")):
+            job["url"] = fallback_job_search_url(job)
+        job["direct_url"] = False
+        job["link_type"] = "search"
+        return job
+
+    candidates = [
+        job.get("url"),
+        job.get("apply_url"),
+        job.get("source_url"),
+        job.get("redirect_url"),
+        job.get("position_uri"),
+    ]
+    direct_url = next((str(u).strip() for u in candidates if is_http_url(str(u).strip())), "")
+    if direct_url:
+        job["url"] = direct_url
+        job["apply_url"] = job.get("apply_url") or direct_url
+        job["direct_url"] = True
+        job["link_type"] = "direct"
+    else:
+        job["url"] = fallback_job_search_url(job)
+        job["direct_url"] = False
+        job["link_type"] = "search"
+    return job
+
+
 def fit_score(job: Dict[str, Any], profile: Dict[str, Any]) -> int:
     text = f"{job.get('title','')} {job.get('company','')} {job.get('description','')} {job.get('location','')}".lower()
     score = 30
@@ -153,6 +201,8 @@ def fetch_adzuna(profile: Dict[str, Any]) -> List[Dict[str, Any]]:
                     "location": (item.get("location") or {}).get("display_name") or location,
                     "source": "Adzuna",
                     "url": url,
+                    "apply_url": url,
+                    "source_url": url,
                     "date_posted": parse_date(item.get("created")),
                     "closing_date": None,
                     "salary_min": item.get("salary_min"),
@@ -223,6 +273,8 @@ def fetch_usajobs(profile: Dict[str, Any]) -> List[Dict[str, Any]]:
                 "location": location,
                 "source": "USAJOBS",
                 "url": url,
+                "apply_url": url,
+                "source_url": url,
                 "date_posted": parse_date(desc.get("PublicationStartDate")),
                 "closing_date": parse_date(desc.get("ApplicationCloseDate")),
                 "salary_min": (desc.get("PositionRemuneration") or [{}])[0].get("MinimumRange") if desc.get("PositionRemuneration") else None,
@@ -257,7 +309,9 @@ def sample_jobs() -> List[Dict[str, Any]]:
             "company": "Sample Geothermal Co.",
             "location": "California, United States",
             "source": "Sample",
-            "url": "#",
+            "url": "https://www.google.com/search?q=Geothermal+Reservoir+Engineer+Full-Time+Early+Career+job+posting",
+            "direct_url": False,
+            "link_type": "search",
             "date_posted": now,
             "closing_date": "2027-05-01",
             "description": "Support geothermal reservoir surveillance, injectivity analysis, production analytics, Python workflows, and field data interpretation for EGS and hydrothermal assets.",
@@ -268,7 +322,9 @@ def sample_jobs() -> List[Dict[str, Any]]:
             "company": "Sample Energy Operator",
             "location": "Houston, TX / Hybrid",
             "source": "Sample",
-            "url": "#",
+            "url": "https://www.google.com/search?q=Petroleum+Production+Data+Analyst+job+posting",
+            "direct_url": False,
+            "link_type": "search",
             "date_posted": now,
             "closing_date": None,
             "description": "Analyze production trends, well performance, reservoir behavior, decline curves, and operational data using Python, SQL, Tableau, and petroleum engineering fundamentals.",
@@ -290,6 +346,7 @@ def main() -> None:
     for job in dedupe(fetched):
         if is_excluded_job(job, profile):
             continue
+        job = ensure_job_url(job)
         job["fit_score"] = fit_score(job, profile)
         job["role_family"] = role_family(job)
         jobs.append(job)
