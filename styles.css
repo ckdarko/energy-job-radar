@@ -194,3 +194,19 @@ code { background: #f2f4f7; border-radius: 6px; padding: .1rem .25rem; }
   .section-heading, .job-card__top { flex-direction: column; }
   .score { width: 64px; }
 }
+
+.apply-link {
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  padding: .55rem .85rem;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.apply-link:hover {
+  background: var(--primary-dark);
+}
