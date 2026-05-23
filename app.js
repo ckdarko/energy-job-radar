@@ -1,6 +1,8 @@
 const PROFILE_KEYWORDS = [
-  "geothermal", "EGS", "reservoir engineering", "production analysis", "petroleum engineering",
-  "conformance control", "reservoir simulation", "Python", "machine learning", "CMG", "Petrel", "KAPPA", "EOR", "carbon storage"
+  "full-time", "early career", "new graduate", "geothermal", "EGS", "enhanced geothermal",
+  "reservoir engineering", "production analysis", "production optimization", "petroleum engineering",
+  "subsurface analytics", "reservoir simulation", "Python", "machine learning", "CMG", "Petrel",
+  "KAPPA", "EOR", "carbon storage", "CCS", "CCUS", "hydrogen", "renewable energy"
 ];
 
 const ROLE_KEYWORDS = {
@@ -63,8 +65,8 @@ function matchReasons(job) {
   PROFILE_KEYWORDS.forEach((keyword) => {
     if (text.includes(normalize(keyword))) reasons.push(keyword);
   });
-  if (/intern|graduate|new grad|entry|early career|phd|doctoral|research/i.test(text)) reasons.push("career stage fit");
-  if (/2027|summer 2027|may 2027|start date/i.test(text)) reasons.push("start-window signal");
+  if (/new graduate|new grad|graduate engineer|entry|early career|associate|junior|phd|doctoral|research|full[- ]time|permanent/i.test(text)) reasons.push("full-time/early-career fit");
+  if (/2027|may 2027|start date|available to start/i.test(text)) reasons.push("start-window signal");
   if (/remote|hybrid/i.test(text)) reasons.push("remote/hybrid");
   return [...new Set(reasons)].slice(0, 8);
 }
@@ -75,7 +77,8 @@ function fitScore(job) {
   score += reasons.length * 7;
   const text = normalize(`${job.title} ${job.description}`);
   if (/senior|principal|manager|director|lead/i.test(text)) score -= 14;
-  if (/intern|graduate|new grad|entry|early career|associate|research engineer|phd/i.test(text)) score += 12;
+  if (/new graduate|new grad|graduate engineer|entry|early career|associate|junior|research engineer|phd|full[- ]time|permanent/i.test(text)) score += 12;
+  if (/\bintern\b|\binternship\b|\bco[- ]?op\b|student trainee/i.test(text)) score -= 35;
   if (/geothermal|reservoir|production|subsurface|petroleum/i.test(text)) score += 10;
   const age = daysAgo(job.date_posted);
   if (age <= 7) score += 8;
@@ -269,7 +272,7 @@ function sampleJobs() {
   return [
     {
       id: "sample-geothermal-reservoir-engineer",
-      title: "Geothermal Reservoir Engineer Intern / Early Career",
+      title: "Geothermal Reservoir Engineer - Full-Time / Early Career",
       company: "Sample Geothermal Co.",
       location: "California, United States",
       source: "Sample",
