@@ -1,0 +1,53 @@
+{
+  "notes": "API-friendly sources added beyond Adzuna and USAJOBS. Greenhouse and Lever board/site tokens may change if an employer changes its applicant tracking system; failed boards are skipped automatically.",
+  "greenhouse_boards": [
+    { "company": "Fervo Energy", "board": "fervoenergy", "focus": "EGS, geothermal reservoir engineering, subsurface analytics" },
+    { "company": "Silicon Ranch", "board": "siliconranch", "focus": "Renewable energy engineering, operations, analytics" },
+    { "company": "Moment Energy", "board": "momentenergy", "focus": "Energy storage engineering and analytics" },
+    { "company": "Group14 Technologies", "board": "group14", "focus": "Battery materials and energy storage" },
+    { "company": "Sila", "board": "sila", "focus": "Battery technology and energy materials" },
+    { "company": "Form Energy", "board": "formenergy", "focus": "Long-duration energy storage" },
+    { "company": "Redwood Materials", "board": "redwoodmaterials", "focus": "Battery materials and circular energy systems" },
+    { "company": "Crusoe", "board": "crusoe", "focus": "Energy infrastructure and data systems" },
+    { "company": "Carbon America", "board": "carbonamerica", "focus": "Carbon storage and CCS" },
+    { "company": "Watershed", "board": "watershed", "focus": "Carbon data, climate analytics" },
+    { "company": "Commonwealth Fusion Systems", "board": "commonwealthfusion", "focus": "Advanced energy engineering" }
+  ],
+  "lever_sites": [
+    { "company": "Fervo Energy", "site": "fervo", "focus": "EGS, geothermal reservoir engineering, subsurface analytics" },
+    { "company": "Gridmatic", "site": "gridmatic", "focus": "Energy analytics, power markets, data science" },
+    { "company": "TRIO", "site": "trio", "focus": "Energy advisory, natural gas/electricity analytics" },
+    { "company": "Solar Landscape", "site": "solarlandscape", "focus": "Renewable energy project analytics" },
+    { "company": "HASI", "site": "hasi", "focus": "Renewable energy finance and analytics" },
+    { "company": "Energy Recovery", "site": "energyrecovery", "focus": "Industrial energy efficiency" },
+    { "company": "Generate Capital", "site": "generatecapital", "focus": "Sustainable infrastructure and energy transition" },
+    { "company": "Nexamp", "site": "nexamp", "focus": "Renewable energy operations and development" },
+    { "company": "Arcadia", "site": "arcadia", "focus": "Energy data and analytics" },
+    { "company": "PowerFlex", "site": "powerflex", "focus": "Renewable energy and distributed energy systems" }
+  ],
+  "company_search_fallbacks": [
+    { "name": "Calpine", "url": "https://www.calpine.com/careers/", "focus": "Geothermal operations and production analytics" },
+    { "name": "Ormat Technologies", "url": "https://www.ormat.com/en/company/careers/", "focus": "Geothermal power and reservoir operations" },
+    { "name": "Fervo Energy", "url": "https://fervoenergy.com/careers/", "focus": "EGS, reservoir engineering, subsurface data" },
+    { "name": "Eavor", "url": "https://www.eavor.com/careers/", "focus": "Closed-loop geothermal systems" },
+    { "name": "Sage Geosystems", "url": "https://www.sagegeosystems.com/careers", "focus": "Geothermal and energy storage" },
+    { "name": "Zanskar", "url": "https://www.zanskar.com/careers", "focus": "Geothermal exploration and data science" },
+    { "name": "Quaise Energy", "url": "https://www.quaise.energy/careers", "focus": "Deep geothermal drilling technology" },
+    { "name": "SLB", "url": "https://careers.slb.com/", "focus": "Reservoir, production, digital, geothermal" },
+    { "name": "Baker Hughes", "url": "https://careers.bakerhughes.com/", "focus": "Energy technology and field engineering" },
+    { "name": "Halliburton", "url": "https://jobs.halliburton.com/", "focus": "Reservoir, production, completions, data" },
+    { "name": "Chevron", "url": "https://careers.chevron.com/", "focus": "Reservoir, production, lower carbon" },
+    { "name": "ExxonMobil", "url": "https://jobs.exxonmobil.com/", "focus": "Reservoir engineering, production, low carbon" },
+    { "name": "Shell", "url": "https://www.shell.com/careers.html", "focus": "Reservoir, production, energy transition" },
+    { "name": "bp", "url": "https://www.bp.com/en/global/corporate/careers.html", "focus": "Petroleum, subsurface, energy transition" },
+    { "name": "Oxy", "url": "https://www.oxy.com/careers/", "focus": "Reservoir, production, carbon management" },
+    { "name": "ConocoPhillips", "url": "https://careers.conocophillips.com/", "focus": "Reservoir, production, operations" },
+    { "name": "EOG Resources", "url": "https://www.eogresources.com/careers/", "focus": "Reservoir and production engineering" },
+    { "name": "Devon Energy", "url": "https://www.devonenergy.com/careers", "focus": "Reservoir, production, operations" },
+    { "name": "NREL", "url": "https://www.nrel.gov/careers/", "focus": "Renewable energy research, geothermal, hydrogen" },
+    { "name": "NETL", "url": "https://netl.doe.gov/careers", "focus": "CCS, subsurface, energy systems" },
+    { "name": "INL", "url": "https://inl.gov/careers/", "focus": "Energy systems, geothermal, hydrogen" },
+    { "name": "ORNL", "url": "https://jobs.ornl.gov/", "focus": "Energy science, data, geothermal-adjacent research" },
+    { "name": "LANL", "url": "https://lanl.jobs/", "focus": "Energy, subsurface, scientific computing" }
+  ]
+}
