@@ -81,6 +81,34 @@ def clean_html(value: Any) -> str:
     return value.strip()
 
 
+def text_from_mixed(value: Any) -> str:
+    """Safely extract text from API fields that may be strings, dicts, or lists.
+
+    Some job APIs, especially Lever boards, do not return identical JSON shapes
+    for every company. A field that is usually {"text": "..."} can sometimes
+    be a plain string or a nested list. This helper prevents one unusual posting
+    from stopping the entire scheduled update.
+    """
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        parts = []
+        for key in ("text", "content", "description", "value"):
+            if key in value:
+                parts.append(text_from_mixed(value.get(key)))
+        # If none of the expected keys exist, keep scalar values rather than dumping JSON.
+        if not parts:
+            for v in value.values():
+                if isinstance(v, (str, int, float)):
+                    parts.append(str(v))
+        return " ".join(p for p in parts if p)
+    if isinstance(value, list):
+        return " ".join(text_from_mixed(v) for v in value if v is not None)
+    return str(value)
+
+
 def stable_id(*parts: Any) -> str:
     raw = "|".join(str(p or "").lower().strip() for p in parts)
     return hashlib.sha1(raw.encode("utf-8")).hexdigest()[:16]
@@ -442,10 +470,12 @@ def fetch_lever(profile: Dict[str, Any], targets: Dict[str, Any], stats: FetchSt
                 item.get("additionalPlain") or item.get("additional") or "",
             ]
             for section in item.get("lists", []) or []:
-                desc_parts.append(section.get("text") or "")
-                for content in section.get("content", []) or []:
-                    desc_parts.append(content.get("text") or "")
-            description = clean_html(" ".join(str(p) for p in desc_parts if p))
+                if isinstance(section, dict):
+                    desc_parts.append(text_from_mixed(section.get("text")))
+                    desc_parts.append(text_from_mixed(section.get("content")))
+                else:
+                    desc_parts.append(text_from_mixed(section))
+            description = clean_html(" ".join(text_from_mixed(p) for p in desc_parts if p))
             job = {
                 "id": stable_id("lever", site, item.get("id"), title),
                 "title": title,
