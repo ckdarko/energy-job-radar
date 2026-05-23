@@ -62,14 +62,36 @@ def fit_score(job: Dict[str, Any], profile: Dict[str, Any]) -> int:
     negative_hits = [kw for kw in profile.get("negative_keywords", []) if kw.lower() in text]
     score += min(len(positive_hits) * 6, 42)
     score -= min(len(negative_hits) * 10, 30)
-    if re.search(r"intern|graduate|new grad|entry|early career|associate|phd|research engineer", text):
+    if re.search(r"new graduate|new grad|graduate engineer|entry|early career|associate|junior|phd|research engineer|full[- ]time|permanent", text):
         score += 12
     if re.search(r"geothermal|reservoir|production|subsurface|petroleum", text):
         score += 10
-    if re.search(r"2027|summer 2027|may 2027|start date", text):
+    if re.search(r"2027|may 2027|start date|available to start|full[- ]time", text):
         score += 8
     return max(0, min(100, score))
 
+
+
+def is_excluded_job(job: Dict[str, Any], profile: Dict[str, Any]) -> bool:
+    """Hard-filter roles the user does not want, especially internships/co-ops."""
+    text = f"{job.get('title','')} {job.get('description','')} {job.get('company','')}".lower()
+    patterns = [
+        r"\bintern\b",
+        r"\binternship\b",
+        r"\bsummer intern\b",
+        r"\bsummer internship\b",
+        r"\bco[- ]?op\b",
+        r"\bcoop\b",
+        r"\bstudent trainee\b",
+        r"\bstudent assistant\b",
+    ]
+    if any(re.search(pattern, text) for pattern in patterns):
+        return True
+    for keyword in profile.get("excluded_keywords", []):
+        kw = keyword.lower().strip()
+        if kw and re.search(r"\b" + re.escape(kw).replace(r"\ ", r"\s+") + r"\b", text):
+            return True
+    return False
 
 def role_family(job: Dict[str, Any]) -> str:
     text = f"{job.get('title','')} {job.get('description','')}".lower()
@@ -159,12 +181,18 @@ def fetch_usajobs(profile: Dict[str, Any]) -> List[Dict[str, Any]]:
     # Federal queries work best with concise keywords.
     federal_queries = [
         "petroleum engineer",
-        "geothermal",
         "reservoir engineer",
+        "production engineer",
+        "geothermal",
+        "geothermal engineer",
         "energy analyst",
         "data scientist energy",
+        "carbon storage",
+        "carbon sequestration",
+        "hydrogen energy",
         "hydrologist geothermal",
         "geologist geothermal",
+        "subsurface",
     ]
     for keyword in federal_queries:
         params = {
@@ -225,7 +253,7 @@ def sample_jobs() -> List[Dict[str, Any]]:
     return [
         {
             "id": "sample-geothermal-reservoir-engineer",
-            "title": "Geothermal Reservoir Engineer Intern / Early Career",
+            "title": "Geothermal Reservoir Engineer - Full-Time / Early Career",
             "company": "Sample Geothermal Co.",
             "location": "California, United States",
             "source": "Sample",
@@ -260,6 +288,8 @@ def main() -> None:
 
     jobs = []
     for job in dedupe(fetched):
+        if is_excluded_job(job, profile):
+            continue
         job["fit_score"] = fit_score(job, profile)
         job["role_family"] = role_family(job)
         jobs.append(job)
