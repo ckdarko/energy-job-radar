@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy Job Radar</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">Petroleum • Geothermal • Renewable Energy • Data Analytics</p>
+      <h1>Energy Job Radar</h1>
+      <p class="subtitle">A personalized job-search dashboard for petroleum, geothermal, renewable energy, reservoir/production analytics, and energy-transition roles. Designed for opportunities starting May 2027 or earlier.</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="#jobs">View jobs</a>
+        <button id="exportCsvBtn" class="button button--secondary" type="button">Export CSV</button>
+      </div>
+    </div>
+    <div class="hero__stats" aria-label="Dashboard stats">
+      <div class="stat-card"><span id="totalJobs">0</span><small>Total jobs</small></div>
+      <div class="stat-card"><span id="newJobs">0</span><small>New in 7 days</small></div>
+      <div class="stat-card"><span id="highFitJobs">0</span><small>High fit</small></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel profile-panel">
+      <div>
+        <h2>Profile match priorities</h2>
+        <p>The scoring model favors roles aligned with PhD-level petroleum engineering, geothermal/EGS, conformance control, reservoir simulation, production analysis, and Python/data analytics.</p>
+      </div>
+      <div id="keywordCloud" class="keyword-cloud" aria-label="Profile keywords"></div>
+    </section>
+
+    <section class="panel controls" aria-label="Search filters">
+      <div class="control-group control-group--wide">
+        <label for="searchInput">Search title, company, description, or skill</label>
+        <input id="searchInput" type="search" placeholder="Example: geothermal reservoir engineer, production analyst, CMG, Python" />
+      </div>
+      <div class="control-group">
+        <label for="roleFilter">Role family</label>
+        <select id="roleFilter">
+          <option value="all">All role families</option>
+          <option value="geothermal">Geothermal / EGS</option>
+          <option value="petroleum">Petroleum / Reservoir</option>
+          <option value="production">Production / Operations</option>
+          <option value="data">Data / ML / Analytics</option>
+          <option value="renewable">Renewable / Energy transition</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="locationFilter">Location</label>
+        <input id="locationFilter" type="text" placeholder="United States, Texas, California, remote" />
+      </div>
+      <div class="control-group">
+        <label for="sourceFilter">Source</label>
+        <select id="sourceFilter">
+          <option value="all">All sources</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="sortFilter">Sort by</label>
+        <select id="sortFilter">
+          <option value="fit">Best fit</option>
+          <option value="date">Newest</option>
+          <option value="deadline">Deadline soonest</option>
+          <option value="company">Company A-Z</option>
+        </select>
+      </div>
+      <div class="control-row">
+        <label class="checkbox"><input id="remoteOnly" type="checkbox" /> Remote/hybrid only</label>
+        <label class="checkbox"><input id="newOnly" type="checkbox" /> New in 7 days</label>
+        <label class="checkbox"><input id="savedOnly" type="checkbox" /> Saved only</label>
+        <label class="checkbox"><input id="hideExpired" type="checkbox" checked /> Hide expired</label>
+      </div>
+    </section>
+
+    <section id="jobs" class="jobs-layout">
+      <aside class="panel side-panel">
+        <h2>Target companies</h2>
+        <p>Use this list for networking and manual checks when APIs miss employer career-page postings.</p>
+        <ul id="companyList" class="company-list"></ul>
+      </aside>
+      <section class="panel job-panel">
+        <div class="section-heading">
+          <div>
+            <h2>Matched job postings</h2>
+            <p id="lastUpdated">Last updated: loading…</p>
+          </div>
+          <p id="resultCount" class="result-count">0 results</p>
+        </div>
+        <div id="jobsList" class="jobs-list"></div>
+        <div id="emptyState" class="empty-state" hidden>
+          <h3>No jobs match these filters.</h3>
+          <p>Try removing a filter, checking broader locations, or adding more search terms in <code>config/profile.json</code>.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>Energy Job Radar updates automatically when the GitHub Actions workflow runs. Saved jobs and statuses are stored locally in your browser.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

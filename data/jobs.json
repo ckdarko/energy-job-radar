@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "last_updated": "2026-05-12T16:20:26.836810+00:00",
+    "total_jobs": 2,
+    "sources_enabled": [
+      "Sample"
+    ],
+    "target_start_date": "2027-05-01"
+  },
+  "jobs": [
+    {
+      "id": "sample-geothermal-reservoir-engineer",
+      "title": "Geothermal Reservoir Engineer Intern / Early Career",
+      "company": "Sample Geothermal Co.",
+      "location": "California, United States",
+      "source": "Sample",
+      "url": "#",
+      "date_posted": "2026-05-12T16:20:26.836484+00:00",
+      "closing_date": "2027-05-01",
+      "description": "Support geothermal reservoir surveillance, injectivity analysis, production analytics, Python workflows, and field data interpretation for EGS and hydrothermal assets.",
+      "fit_score": 82,
+      "role_family": "geothermal"
+    },
+    {
+      "id": "sample-production-analyst",
+      "title": "Petroleum Production Data Analyst",
+      "company": "Sample Energy Operator",
+      "location": "Houston, TX / Hybrid",
+      "source": "Sample",
+      "url": "#",
+      "date_posted": "2026-05-12T16:20:26.836484+00:00",
+      "closing_date": null,
+      "description": "Analyze production trends, well performance, reservoir behavior, decline curves, and operational data using Python, SQL, Tableau, and petroleum engineering fundamentals.",
+      "fit_score": 70,
+      "role_family": "data"
+    }
+  ]
+}

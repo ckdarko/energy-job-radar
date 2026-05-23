@@ -1,0 +1,12 @@
+[
+  { "name": "Calpine", "url": "https://www.calpine.com/careers/", "focus": "Geothermal operations and production analytics" },
+  { "name": "Ormat Technologies", "url": "https://www.ormat.com/en/company/careers/", "focus": "Geothermal power and reservoir operations" },
+  { "name": "Fervo Energy", "url": "https://fervoenergy.com/careers/", "focus": "EGS, reservoir engineering, subsurface data" },
+  { "name": "Sage Geosystems", "url": "https://www.sagegeosystems.com/careers", "focus": "Geothermal and energy storage" },
+  { "name": "SLB", "url": "https://careers.slb.com/", "focus": "Reservoir, production, digital, geothermal" },
+  { "name": "Baker Hughes", "url": "https://careers.bakerhughes.com/", "focus": "Energy technology and field engineering" },
+  { "name": "Chevron", "url": "https://careers.chevron.com/", "focus": "Reservoir, production, lower carbon" },
+  { "name": "ExxonMobil", "url": "https://jobs.exxonmobil.com/", "focus": "Reservoir engineering, production, low carbon" },
+  { "name": "Oxy", "url": "https://www.oxy.com/careers/", "focus": "Reservoir, production, carbon management" },
+  { "name": "ConocoPhillips", "url": "https://careers.conocophillips.com/", "focus": "Reservoir, production, operations" }
+]
