@@ -50,6 +50,26 @@ function summarize(text, max = 260) {
   return clean.length > max ? `${clean.slice(0, max).trim()}…` : clean;
 }
 
+function fallbackSearchUrl(job) {
+  const query = encodeURIComponent(`${job.title || ""} ${job.company || ""} ${job.location || ""} job posting`.trim());
+  return `https://www.google.com/search?q=${query}`;
+}
+
+function isDirectJobUrl(job) {
+  const url = (job.url || job.apply_url || job.source_url || "").trim();
+  return Boolean(url && url !== "#" && /^https?:\/\//i.test(url) && job.direct_url !== false && job.link_type !== "search");
+}
+
+function jobUrl(job) {
+  const url = (job.url || job.apply_url || job.source_url || "").trim();
+  if (url && url !== "#" && /^https?:\/\//i.test(url)) return url;
+  return fallbackSearchUrl(job);
+}
+
+function jobLinkLabel(job) {
+  return isDirectJobUrl(job) ? "Apply / View posting" : "Search this posting";
+}
+
 function computeRoleFamily(job) {
   const text = normalize(`${job.title} ${job.description} ${job.category || ""}`);
   const scores = Object.entries(ROLE_KEYWORDS).map(([family, words]) => [
@@ -190,11 +210,13 @@ function renderJobCard(job) {
   const saved = state.saved;
   const status = state.status || "Not started";
   const scoreClass = job.fit_score >= 70 ? "pill--good" : job.fit_score >= 50 ? "pill--accent" : "";
+  const href = jobUrl(job);
+  const direct = isDirectJobUrl(job);
   return `
     <article class="job-card" data-job-id="${job.id}">
       <div class="job-card__top">
         <div>
-          <h3 class="job-title"><a href="${job.url}" target="_blank" rel="noopener">${job.title}</a></h3>
+          <h3 class="job-title"><a href="${href}" target="_blank" rel="noopener">${job.title}</a></h3>
           <p class="company">${job.company || "Unknown company"} • ${job.location || "Location not provided"}</p>
         </div>
         <div class="score" style="--score:${job.fit_score}" aria-label="Fit score ${job.fit_score}">${job.fit_score}</div>
@@ -202,6 +224,7 @@ function renderJobCard(job) {
       <div class="job-meta">
         <span class="pill ${scoreClass}">${job.fit_score >= 70 ? "High fit" : job.fit_score >= 50 ? "Possible fit" : "Review"}</span>
         <span class="pill">${job.source || "Source unknown"}</span>
+        <span class="pill ${direct ? "pill--good" : "pill--accent"}">${direct ? "Direct job link" : "Search fallback link"}</span>
         <span class="pill">Posted ${fmtDate(job.date_posted)}</span>
         ${job.closing_date ? `<span class="pill ${isExpired(job) ? "pill--bad" : ""}">Closes ${fmtDate(job.closing_date)}</span>` : ""}
         <span class="pill">${job.role_family}</span>
@@ -215,6 +238,7 @@ function renderJobCard(job) {
         <select class="status-select" data-action="status" aria-label="Application status">
           ${["Not started", "Interested", "Applied", "Networking", "Interview", "Rejected", "Closed"].map((s) => `<option ${s === status ? "selected" : ""}>${s}</option>`).join("")}
         </select>
+        <a class="apply-link" href="${href}" target="_blank" rel="noopener">${jobLinkLabel(job)} ↗</a>
       </div>
     </article>
   `;
@@ -255,7 +279,7 @@ function exportCsv() {
     closing_date: j.closing_date || "",
     status: savedState[j.id]?.status || "Not started",
     saved: savedState[j.id]?.saved ? "yes" : "no",
-    url: j.url
+    url: jobUrl(j)
   }));
   const header = Object.keys(rows[0] || { title: "", company: "", location: "", source: "", fit_score: "", date_posted: "", closing_date: "", status: "", saved: "", url: "" });
   const csv = [header.join(","), ...rows.map((row) => header.map((h) => `"${String(row[h] || "").replace(/"/g, '""')}"`).join(","))].join("\n");
@@ -276,7 +300,9 @@ function sampleJobs() {
       company: "Sample Geothermal Co.",
       location: "California, United States",
       source: "Sample",
-      url: "#",
+      url: "https://www.google.com/search?q=Geothermal+Reservoir+Engineer+Full-Time+Early+Career+job+posting",
+      direct_url: false,
+      link_type: "search",
       date_posted: new Date().toISOString(),
       closing_date: "2027-05-01",
       description: "Support geothermal reservoir surveillance, injectivity analysis, production analytics, Python workflows, and field data interpretation for EGS and hydrothermal assets."
@@ -287,7 +313,9 @@ function sampleJobs() {
       company: "Sample Energy Operator",
       location: "Houston, TX / Hybrid",
       source: "Sample",
-      url: "#",
+      url: "https://www.google.com/search?q=Petroleum+Production+Data+Analyst+job+posting",
+      direct_url: false,
+      link_type: "search",
       date_posted: new Date(Date.now() - 3 * 86400000).toISOString(),
       description: "Analyze production trends, well performance, reservoir behavior, decline curves, and operational data using Python, SQL, Tableau, and petroleum engineering fundamentals."
     }
