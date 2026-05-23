@@ -3,7 +3,11 @@ name: Update job postings
 on:
   workflow_dispatch:
   schedule:
+    # Runs daily at 13:00 UTC, which is 8:00 AM Central Daylight Time during daylight saving time.
     - cron: "0 13 * * *"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: write
@@ -35,7 +39,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/jobs.json
+          git add data/jobs.json config/company_watchlist.json
           if git diff --cached --quiet; then
             echo "No job data changes to commit."
           else
