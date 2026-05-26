@@ -18,7 +18,7 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 from urllib.parse import urlencode
@@ -131,6 +131,69 @@ def parse_date(value: Optional[Any]) -> Optional[str]:
     # Keep date-only values date-only. ISO timestamps work in the browser too.
     return value[:10] if re.match(r"^\d{4}-\d{2}-\d{2}", value) else value
 
+
+
+def date_to_day(value: Optional[Any]) -> Optional[datetime]:
+    """Parse a date/date-time value into a UTC datetime for recency filtering."""
+    if value is None or value == "":
+        return None
+    if isinstance(value, (int, float)):
+        try:
+            if value > 10_000_000_000:
+                value = value / 1000
+            return datetime.fromtimestamp(value, tz=timezone.utc)
+        except Exception:
+            return None
+    text = str(value).strip()
+    if not text:
+        return None
+    text = text.replace("Z", "+00:00")
+    # Date-only strings are treated as midnight UTC.
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", text):
+        try:
+            return datetime.fromisoformat(text).replace(tzinfo=timezone.utc)
+        except Exception:
+            return None
+    try:
+        dt = datetime.fromisoformat(text)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except Exception:
+        pass
+    # Last fallback for values like 2026-05-26T12:34:56.000+0000
+    m = re.match(r"^(\d{4}-\d{2}-\d{2})", text)
+    if m:
+        try:
+            return datetime.fromisoformat(m.group(1)).replace(tzinfo=timezone.utc)
+        except Exception:
+            return None
+    return None
+
+
+def is_recent_job(job: Dict[str, Any], profile: Dict[str, Any]) -> bool:
+    """Keep recent postings only. Watchlist links are not postings, so keep them.
+
+    Default behavior removes anything posted before 2026-01-01 and anything older than
+    max_job_age_days. This prevents stale 2025 postings from appearing in the dashboard.
+    """
+    if job.get("is_watchlist_item"):
+        return True
+    posted = date_to_day(job.get("date_posted"))
+    if posted is None:
+        # Real postings without dates are usually unreliable/stale for this dashboard.
+        return bool(profile.get("include_undated_jobs", False))
+    min_date_text = profile.get("min_posted_date")
+    if min_date_text:
+        min_date = date_to_day(min_date_text)
+        if min_date and posted < min_date:
+            return False
+    max_age = int(profile.get("max_job_age_days", 120))
+    if max_age > 0:
+        cutoff = datetime.now(timezone.utc) - timedelta(days=max_age)
+        if posted < cutoff:
+            return False
+    return True
 
 def is_http_url(value: Optional[Any]) -> bool:
     if not value:
@@ -286,6 +349,7 @@ def fetch_adzuna(profile: Dict[str, Any], stats: FetchStats) -> List[Dict[str, A
                 "where": location,
                 "sort_by": "date",
                 "content-type": "application/json",
+                "max_days_old": int(profile.get("max_job_age_days", 120)),
             }
             try:
                 r = session.get("https://api.adzuna.com/v1/api/jobs/us/search/1", params=params, timeout=REQUEST_TIMEOUT)
@@ -609,9 +673,10 @@ def add_company_search_fallbacks(targets: Dict[str, Any], profile: Dict[str, Any
             "closing_date": None,
             "salary_min": None,
             "salary_max": None,
-            "description": f"Manual career-page check for {name}. Focus: {item.get('focus','energy roles')}. Use this when APIs miss postings on employer sites.",
+            "description": f"Manual career-page/capture check for {name}. Website/careers source from Houston oil-and-gas watchlist or direct company page where available. Focus: {item.get('focus','energy roles')}. Capture method: {item.get('capture_method', 'Direct career page/search fallback; not scraped unless API feed exists')}. Use this when APIs miss postings on employer sites.",
             "query": item.get("focus", "target company career page"),
             "is_watchlist_item": True,
+            "capture_method": item.get("capture_method", "direct career page/search fallback"),
         }
         # Give watchlist items moderate fit but they should appear after real postings.
         job["fit_score"] = 35
@@ -676,6 +741,8 @@ def process_jobs(fetched: Iterable[Dict[str, Any]], profile: Dict[str, Any], inc
     minimum_fit = int(profile.get("minimum_fit_score", 38))
     for job in dedupe(fetched):
         if is_excluded_job(job, profile):
+            continue
+        if not is_recent_job(job, profile):
             continue
         job = ensure_job_url(job)
         if "fit_score" not in job:
@@ -747,6 +814,8 @@ def main() -> None:
             "target_start_date": profile.get("target_start_date"),
             "employment_type": profile.get("employment_type", "full-time"),
             "minimum_fit_score": profile.get("minimum_fit_score", 38),
+            "min_posted_date": profile.get("min_posted_date"),
+            "max_job_age_days": profile.get("max_job_age_days", 120),
         },
         "jobs": jobs,
     }

@@ -104,3 +104,30 @@ For companies without a clean API feed, add them to `company_search_fallbacks` w
 Some Greenhouse and Lever tokens can fail if a company changes applicant-tracking systems or uses a different board token. The updater skips failed boards automatically and records warnings in `data/jobs.json` under `metadata.source_errors`.
 
 The sample jobs in `data/jobs.json` are preview data. They disappear after the GitHub Actions workflow successfully fetches live postings.
+
+
+## Houston oil-and-gas company watchlist and recency update
+
+This version adds a Houston oil-and-gas watchlist based on the EasyLeadz Houston company list provided by the user. The watchlist is stored in:
+
+- `config/houston_oil_gas_watchlist.json`
+- `config/company_watchlist.json`
+- `config/source_targets.json`
+
+The app does not blindly scrape every employer website. It captures postings automatically only where an API-friendly source exists: Adzuna, USAJOBS, Greenhouse, Lever, Remotive, and Arbeitnow. Companies without clean job feeds are included as career-page or Google-search fallback links so you can still check them directly from the dashboard.
+
+### Recent posting filter
+
+The updater now filters out stale postings. Default settings are in `config/profile.json`:
+
+```json
+"min_posted_date": "2026-01-01",
+"max_job_age_days": 120,
+"include_undated_jobs": false
+```
+
+This prevents old 2025 postings from appearing in the matched jobs list.
+
+### Back-to-top button
+
+The dashboard now includes a floating `↑ Top` button that appears after scrolling and returns the user to the top of the page.

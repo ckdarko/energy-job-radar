@@ -116,7 +116,27 @@
     "PhD petroleum engineer reservoir",
     "PhD geothermal engineer",
     "PhD reservoir engineer",
-    "PhD subsurface data scientist"
+    "PhD subsurface data scientist",
+    "Houston reservoir engineer full time",
+    "Houston petroleum engineer full time",
+    "Houston production engineer oil gas full time",
+    "Houston production data analyst oil gas",
+    "Houston reservoir simulation engineer",
+    "Houston subsurface data analyst",
+    "Houston operations engineer oil gas",
+    "Houston completions engineer full time",
+    "Houston well performance engineer",
+    "Houston production optimization engineer",
+    "Houston energy data analyst",
+    "Houston carbon storage reservoir engineer",
+    "Houston CCUS engineer",
+    "Houston geothermal reservoir engineer",
+    "Houston natural gas engineer",
+    "Houston midstream engineer",
+    "Houston pipeline engineer",
+    "Houston LNG engineer",
+    "Houston drilling engineer",
+    "Houston field engineer oil gas full time"
   ],
   "federal_queries": [
     "petroleum engineer",
@@ -150,7 +170,27 @@
     "oil gas data analyst",
     "Python energy analyst",
     "machine learning energy",
-    "subsurface data scientist"
+    "subsurface data scientist",
+    "Houston reservoir engineer full time",
+    "Houston petroleum engineer full time",
+    "Houston production engineer oil gas full time",
+    "Houston production data analyst oil gas",
+    "Houston reservoir simulation engineer",
+    "Houston subsurface data analyst",
+    "Houston operations engineer oil gas",
+    "Houston completions engineer full time",
+    "Houston well performance engineer",
+    "Houston production optimization engineer",
+    "Houston energy data analyst",
+    "Houston carbon storage reservoir engineer",
+    "Houston CCUS engineer",
+    "Houston geothermal reservoir engineer",
+    "Houston natural gas engineer",
+    "Houston midstream engineer",
+    "Houston pipeline engineer",
+    "Houston LNG engineer",
+    "Houston drilling engineer",
+    "Houston field engineer oil gas full time"
   ],
   "positive_keywords": [
     "full time",
@@ -250,5 +290,9 @@
     "coop",
     "student trainee",
     "student assistant"
-  ]
+  ],
+  "min_posted_date": "2026-01-01",
+  "max_job_age_days": 120,
+  "include_undated_jobs": false,
+  "recency_note": "Exclude stale postings, especially anything from 2025. Keep postings on/after 2026-01-01 and preferably within the last 120 days."
 }

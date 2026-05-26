@@ -29,6 +29,9 @@ const TARGET_COMPANIES = [
 let allJobs = [];
 let savedState = JSON.parse(localStorage.getItem("energyJobRadarState") || "{}");
 let metadata = {};
+let companyWatchlist = TARGET_COMPANIES;
+const MIN_POSTED_DATE = new Date("2026-01-01T00:00:00Z");
+const MAX_JOB_AGE_DAYS = 120;
 
 const el = (id) => document.getElementById(id);
 const fmtDate = (value) => {
@@ -43,6 +46,15 @@ const daysAgo = (value) => {
   return Math.floor((Date.now() - d.getTime()) / 86400000);
 };
 const isExpired = (job) => job.closing_date && new Date(job.closing_date) < new Date();
+const isWatchlistItem = (job) => Boolean(job.is_watchlist_item || /company watchlist/i.test(job.source || ""));
+const isStalePosting = (job) => {
+  if (isWatchlistItem(job)) return false;
+  if (!job.date_posted) return true;
+  const d = new Date(job.date_posted);
+  if (Number.isNaN(d.getTime())) return true;
+  if (d < MIN_POSTED_DATE) return true;
+  return daysAgo(job.date_posted) > MAX_JOB_AGE_DAYS;
+};
 const normalize = (s = "") => s.toString().toLowerCase();
 
 function summarize(text, max = 260) {
@@ -115,17 +127,29 @@ function enrich(job) {
   return { ...job, role_family, match_reasons: reasons, fit_score: score };
 }
 
+async function loadCompanyWatchlist() {
+  try {
+    const response = await fetch("config/company_watchlist.json", { cache: "no-store" });
+    if (!response.ok) throw new Error("company_watchlist.json missing");
+    const data = await response.json();
+    if (Array.isArray(data) && data.length) companyWatchlist = data;
+  } catch (error) {
+    console.warn("Using built-in target company list because company_watchlist.json could not be loaded.", error);
+  }
+}
+
 async function loadJobs() {
+  await loadCompanyWatchlist();
   try {
     const response = await fetch("data/jobs.json", { cache: "no-store" });
     if (!response.ok) throw new Error("jobs.json missing");
     const payload = await response.json();
     metadata = payload.metadata || {};
-    allJobs = (payload.jobs || []).map(enrich);
+    allJobs = (payload.jobs || []).map(enrich).filter((job) => !isStalePosting(job));
   } catch (error) {
     console.warn("Using built-in sample jobs because data/jobs.json could not be loaded.", error);
     metadata = { last_updated: new Date().toISOString(), mode: "sample" };
-    allJobs = sampleJobs().map(enrich);
+    allJobs = sampleJobs().map(enrich).filter((job) => !isStalePosting(job));
   }
   renderStaticContent();
   populateSources();
@@ -134,10 +158,10 @@ async function loadJobs() {
 
 function renderStaticContent() {
   el("keywordCloud").innerHTML = PROFILE_KEYWORDS.map((k) => `<span class="pill pill--primary">${k}</span>`).join("");
-  el("companyList").innerHTML = TARGET_COMPANIES.map((c) => `
-    <li><a href="${c.url}" target="_blank" rel="noopener">${c.name}</a><small>${c.focus}</small></li>
+  el("companyList").innerHTML = companyWatchlist.slice(0, 140).map((c) => `
+    <li><a href="${c.url}" target="_blank" rel="noopener">${c.name}</a><small>${c.focus || c.capture_method || "Target company"}</small></li>
   `).join("");
-  el("lastUpdated").textContent = `Last updated: ${fmtDate(metadata.last_updated)}${metadata.mode === "sample" ? " (sample data)" : ""}`;
+  el("lastUpdated").textContent = `Last updated: ${fmtDate(metadata.last_updated)}${metadata.mode === "sample" ? " (sample data)" : ""}. Showing postings from 2026 onward and within about ${MAX_JOB_AGE_DAYS} days.`;
 }
 
 function populateSources() {
@@ -167,7 +191,7 @@ function getFilters() {
 
 function filteredJobs() {
   const f = getFilters();
-  let jobs = [...allJobs];
+  let jobs = [...allJobs].filter((job) => !isStalePosting(job));
   if (f.search) {
     jobs = jobs.filter((job) => normalize(`${job.title} ${job.company} ${job.description} ${job.location} ${(job.match_reasons || []).join(" ")}`).includes(f.search));
   }
@@ -228,6 +252,7 @@ function renderJobCard(job) {
         <span class="pill">Posted ${fmtDate(job.date_posted)}</span>
         ${job.closing_date ? `<span class="pill ${isExpired(job) ? "pill--bad" : ""}">Closes ${fmtDate(job.closing_date)}</span>` : ""}
         <span class="pill">${job.role_family}</span>
+        ${job.capture_method ? `<span class="pill pill--accent">${job.capture_method.length > 44 ? "career-page fallback" : job.capture_method}</span>` : ""}
       </div>
       <p class="job-desc">${summarize(job.description)}</p>
       <div class="match-reasons">
@@ -327,4 +352,11 @@ function sampleJobs() {
   el(id).addEventListener("change", render);
 });
 el("exportCsvBtn").addEventListener("click", exportCsv);
+const backToTopBtn = el("backToTopBtn");
+if (backToTopBtn) {
+  backToTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  window.addEventListener("scroll", () => {
+    backToTopBtn.classList.toggle("is-visible", window.scrollY > 450);
+  });
+}
 loadJobs();

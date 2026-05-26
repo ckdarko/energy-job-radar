@@ -210,3 +210,37 @@ code { background: #f2f4f7; border-radius: 6px; padding: .1rem .25rem; }
 .apply-link:hover {
   background: var(--primary-dark);
 }
+
+.recency-note {
+  color: var(--primary-dark);
+  background: #ecfdf5;
+  border-radius: 999px;
+  padding: .35rem .65rem;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 50;
+  border: 0;
+  border-radius: 999px;
+  padding: .75rem 1rem;
+  font-weight: 900;
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, background .2s ease;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--primary-dark);
+}
