@@ -2,841 +2,701 @@
   {
     "name": "Calpine",
     "url": "https://www.calpine.com/careers/",
-    "focus": "Geothermal operations and production analytics",
-    "capture_method": ""
+    "focus": "Geothermal operations and production analytics"
   },
   {
     "name": "Ormat Technologies",
     "url": "https://www.ormat.com/en/company/careers/",
-    "focus": "Geothermal power and reservoir operations",
-    "capture_method": ""
+    "focus": "Geothermal power and reservoir operations"
   },
   {
     "name": "Fervo Energy",
     "url": "https://fervoenergy.com/careers/",
-    "focus": "EGS, reservoir engineering, subsurface data",
-    "capture_method": ""
+    "focus": "EGS, reservoir engineering, subsurface data"
   },
   {
     "name": "Eavor",
     "url": "https://www.eavor.com/careers/",
-    "focus": "Closed-loop geothermal systems",
-    "capture_method": ""
+    "focus": "Closed-loop geothermal systems"
   },
   {
     "name": "Sage Geosystems",
     "url": "https://www.sagegeosystems.com/careers",
-    "focus": "Geothermal and energy storage",
-    "capture_method": ""
+    "focus": "Geothermal and energy storage"
   },
   {
     "name": "Zanskar",
     "url": "https://www.zanskar.com/careers",
-    "focus": "Geothermal exploration and data science",
-    "capture_method": ""
+    "focus": "Geothermal exploration and data science"
   },
   {
     "name": "Quaise Energy",
     "url": "https://www.quaise.energy/careers",
-    "focus": "Deep geothermal drilling technology",
-    "capture_method": ""
+    "focus": "Deep geothermal drilling technology"
   },
   {
     "name": "SLB",
     "url": "https://careers.slb.com/",
-    "focus": "Reservoir, production, digital, geothermal",
-    "capture_method": ""
+    "focus": "Reservoir, production, digital, geothermal"
   },
   {
     "name": "Baker Hughes",
     "url": "https://careers.bakerhughes.com/",
-    "focus": "Energy technology and field engineering",
-    "capture_method": ""
+    "focus": "Energy technology and field engineering"
   },
   {
     "name": "Halliburton",
     "url": "https://jobs.halliburton.com/",
-    "focus": "Reservoir, production, completions, data",
-    "capture_method": ""
+    "focus": "Reservoir, production, completions, data"
   },
   {
     "name": "Chevron",
     "url": "https://careers.chevron.com/",
-    "focus": "Reservoir, production, lower carbon",
-    "capture_method": ""
+    "focus": "Reservoir, production, lower carbon"
   },
   {
     "name": "ExxonMobil",
     "url": "https://jobs.exxonmobil.com/",
-    "focus": "Reservoir engineering, production, low carbon",
-    "capture_method": ""
+    "focus": "Reservoir engineering, production, low carbon"
   },
   {
     "name": "Shell",
     "url": "https://www.shell.com/careers.html",
-    "focus": "Reservoir, production, energy transition",
-    "capture_method": ""
+    "focus": "Reservoir, production, energy transition"
   },
   {
     "name": "bp",
     "url": "https://www.bp.com/en/global/corporate/careers.html",
-    "focus": "Petroleum, subsurface, energy transition",
-    "capture_method": ""
+    "focus": "Petroleum, subsurface, energy transition"
   },
   {
     "name": "Oxy",
     "url": "https://www.oxy.com/careers/",
-    "focus": "Reservoir, production, carbon management",
-    "capture_method": ""
+    "focus": "Reservoir, production, carbon management"
   },
   {
     "name": "ConocoPhillips",
     "url": "https://careers.conocophillips.com/",
-    "focus": "Reservoir, production, operations",
-    "capture_method": ""
+    "focus": "Reservoir, production, operations"
   },
   {
     "name": "EOG Resources",
     "url": "https://www.eogresources.com/careers/",
-    "focus": "Reservoir and production engineering",
-    "capture_method": ""
+    "focus": "Reservoir and production engineering"
   },
   {
     "name": "Devon Energy",
     "url": "https://www.devonenergy.com/careers",
-    "focus": "Reservoir, production, operations",
-    "capture_method": ""
+    "focus": "Reservoir, production, operations"
   },
   {
     "name": "NREL",
     "url": "https://www.nrel.gov/careers/",
-    "focus": "Renewable energy research, geothermal, hydrogen",
-    "capture_method": ""
+    "focus": "Renewable energy research, geothermal, hydrogen"
   },
   {
     "name": "NETL",
     "url": "https://netl.doe.gov/careers",
-    "focus": "CCS, subsurface, energy systems",
-    "capture_method": ""
+    "focus": "CCS, subsurface, energy systems"
   },
   {
     "name": "INL",
     "url": "https://inl.gov/careers/",
-    "focus": "Energy systems, geothermal, hydrogen",
-    "capture_method": ""
+    "focus": "Energy systems, geothermal, hydrogen"
   },
   {
     "name": "ORNL",
     "url": "https://jobs.ornl.gov/",
-    "focus": "Energy science, data, geothermal-adjacent research",
-    "capture_method": ""
+    "focus": "Energy science, data, geothermal-adjacent research"
   },
   {
     "name": "LANL",
     "url": "https://lanl.jobs/",
-    "focus": "Energy, subsurface, scientific computing",
-    "capture_method": ""
+    "focus": "Energy, subsurface, scientific computing"
   },
   {
     "name": "Phillips 66",
     "url": "https://www.phillips66.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Houston American Energy",
     "url": "https://www.google.com/search?q=Houston+American+Energy+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Magnolia Oil & Gas",
     "url": "https://www.magnoliaoilgas.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Third Coast Infrastructure",
     "url": "https://www.google.com/search?q=Third+Coast+Infrastructure+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Bayou Midstream",
     "url": "https://www.google.com/search?q=Bayou+Midstream+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "WildFire Energy",
     "url": "http://www.wildfire-energy.com",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Summit Midstream Partners",
     "url": "https://summitmidstream.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Subsea Global Solutions",
     "url": "https://www.subseaglobalsolutions.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Genesis Energy",
     "url": "https://www.genesisenergy.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Coterra Energy",
     "url": "https://www.coterra.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Boardwalk Pipeline",
     "url": "https://www.bwpipelines.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Talos Energy",
     "url": "https://www.talosenergy.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Helix Energy Solutions",
     "url": "https://www.helixesg.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Nabors",
     "url": "https://www.nabors.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Oceaneering",
     "url": "https://www.oceaneering.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Diamond Offshore Drilling Inc",
     "url": "https://www.diamondoffshore.com/careers",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Commonwealth LNG",
     "url": "https://commonwealthlng.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Crescent Energy",
     "url": "https://www.crescentenergyco.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Detechtion",
     "url": "https://www.detechtion.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Kinetic Pressure Control",
     "url": "https://www.kineticpressurecontrol.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Cheniere Energy Inc",
     "url": "https://www.cheniere.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Delfin Midstream",
     "url": "https://www.google.com/search?q=Delfin+Midstream+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Archer - The Well Company",
     "url": "https://www.archerwell.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Par Pacific Holdings, Inc",
     "url": "https://www.parpacific.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Cactus Wellhead",
     "url": "https://www.cactuswhd.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Targa Resources",
     "url": "https://www.targaresources.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Orbital Energy Group",
     "url": "https://www.google.com/search?q=Orbital+Energy+Group+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Occidental Petroleum Corporation",
     "url": "https://www.oxy.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Ridgefield Energy Partners",
     "url": "https://www.google.com/search?q=Ridgefield+Energy+Partners+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Keane Group",
     "url": "https://www.google.com/search?q=Keane+Group+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Just Energy",
     "url": "https://www.google.com/search?q=Just+Energy+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Genesis Energy, LP",
     "url": "https://www.genesisenergy.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Forum Energy Technologies",
     "url": "https://www.f-e-t.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "DistributionNOW",
     "url": "https://www.dnow.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Crestwood Midstream Partners LP",
     "url": "https://www.google.com/search?q=Crestwood+Midstream+Partners+LP+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Audubon Companies",
     "url": "https://www.auduboncompanies.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Archrock",
     "url": "https://www.archrock.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "FMC Technologies",
     "url": "https://www.google.com/search?q=FMC+Technologies+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Kraken Oil & Gas",
     "url": "https://www.google.com/search?q=Kraken+Oil+%26+Gas+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Mobius Risk Group",
     "url": "https://www.google.com/search?q=Mobius+Risk+Group+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Enercross Energy",
     "url": "https://www.google.com/search?q=Enercross+Energy+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Gateway Ventures Limited",
     "url": "https://www.google.com/search?q=Gateway+Ventures+Limited+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "PERC Engineering",
     "url": "https://www.google.com/search?q=PERC+Engineering+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "OPT Worldwide Inc",
     "url": "https://www.google.com/search?q=OPT+Worldwide+Inc+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Downhole Emerging Technologies",
     "url": "https://www.google.com/search?q=Downhole+Emerging+Technologies+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Reach Production Solutions",
     "url": "https://www.google.com/search?q=Reach+Production+Solutions+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Ziebel",
     "url": "https://www.google.com/search?q=Ziebel+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Universal Pressure Pumping, Inc",
     "url": "https://www.google.com/search?q=Universal+Pressure+Pumping%2C+Inc+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Exterran",
     "url": "https://www.google.com/search?q=Exterran+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Centurion Pipeline Co",
     "url": "https://www.google.com/search?q=Centurion+Pipeline+Co+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Motiva Enterprises LLC",
     "url": "https://www.motiva.com/careers",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "JSL International LLC",
     "url": "https://www.google.com/search?q=JSL+International+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Alta Resources, LLC",
     "url": "https://www.google.com/search?q=Alta+Resources%2C+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "NexTier Oilfield Solutions",
     "url": "https://www.google.com/search?q=NexTier+Oilfield+Solutions+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Gulf Island Fabrication, Inc",
     "url": "https://www.google.com/search?q=Gulf+Island+Fabrication%2C+Inc+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Valaris PLC",
     "url": "https://www.valaris.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "National Oilwell Varco",
     "url": "https://www.nov.com/careers",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Versatech Automation Services, LLC",
     "url": "https://www.google.com/search?q=Versatech+Automation+Services%2C+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Hudson Energy",
     "url": "https://www.google.com/search?q=Hudson+Energy+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Prince Energy LLC",
     "url": "https://www.google.com/search?q=Prince+Energy+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "ION Geophysical Corporation",
     "url": "https://www.google.com/search?q=ION+Geophysical+Corporation+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Daily Thermetrics",
     "url": "https://www.google.com/search?q=Daily+Thermetrics+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Power Research Inc",
     "url": "https://www.google.com/search?q=Power+Research+Inc+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Epic Ceramic Proppants, Inc",
     "url": "https://www.google.com/search?q=Epic+Ceramic+Proppants%2C+Inc+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Sepcor Corporation",
     "url": "https://www.google.com/search?q=Sepcor+Corporation+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Carbon Center",
     "url": "https://www.google.com/search?q=Carbon+Center+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Amerapex",
     "url": "https://www.google.com/search?q=Amerapex+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Falcon Global Limited",
     "url": "https://www.google.com/search?q=Falcon+Global+Limited+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "M1neral",
     "url": "https://www.google.com/search?q=M1neral+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Midcoast Energy",
     "url": "https://www.google.com/search?q=Midcoast+Energy+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Contango Oil & Gas Co",
     "url": "https://www.google.com/search?q=Contango+Oil+%26+Gas+Co+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "NextDecade",
     "url": "https://www.next-decade.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Continental Energy Services LLC",
     "url": "https://www.google.com/search?q=Continental+Energy+Services+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Bishop Lifting Products",
     "url": "https://www.google.com/search?q=Bishop+Lifting+Products+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "JGC America, Inc",
     "url": "https://www.google.com/search?q=JGC+America%2C+Inc+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Silverwell Energy Limited",
     "url": "https://www.google.com/search?q=Silverwell+Energy+Limited+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Woods Family Office",
     "url": "https://www.google.com/search?q=Woods+Family+Office+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Crystaphase",
     "url": "https://www.google.com/search?q=Crystaphase+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Prime Downhole Manufacturing LLC",
     "url": "https://www.google.com/search?q=Prime+Downhole+Manufacturing+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Buckhead Midstream, LLC",
     "url": "https://www.google.com/search?q=Buckhead+Midstream%2C+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Victerra",
     "url": "https://www.google.com/search?q=Victerra+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Integrated Consulting",
     "url": "https://www.google.com/search?q=Integrated+Consulting+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Applied Manufacturing Technologies LP",
     "url": "https://www.google.com/search?q=Applied+Manufacturing+Technologies+LP+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "H2O Midstream, LLC",
     "url": "https://www.google.com/search?q=H2O+Midstream%2C+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Solaris Water Midstream",
     "url": "https://www.google.com/search?q=Solaris+Water+Midstream+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Millennial Energy Partners",
     "url": "https://www.google.com/search?q=Millennial+Energy+Partners+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Park Cross Energy, LLC",
     "url": "https://www.google.com/search?q=Park+Cross+Energy%2C+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Caliche Development Partners",
     "url": "https://www.google.com/search?q=Caliche+Development+Partners+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Antimo LLC",
     "url": "https://www.google.com/search?q=Antimo+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Live Oak Resource Partners",
     "url": "https://www.google.com/search?q=Live+Oak+Resource+Partners+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Sulmara Subsea",
     "url": "https://sulmara.com/careers/",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Direct official careers/website link; postings may also be captured by Adzuna if indexed. Not scraped directly unless an API feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Ajax Resources, LLC",
     "url": "https://www.google.com/search?q=Ajax+Resources%2C+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Nugen Automation",
     "url": "https://www.google.com/search?q=Nugen+Automation+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Black Falcon Energy LLC",
     "url": "https://www.google.com/search?q=Black+Falcon+Energy+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Arsenal Inc",
     "url": "https://www.google.com/search?q=Arsenal+Inc+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Zupt, LLC",
     "url": "https://www.google.com/search?q=Zupt%2C+LLC+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Optimus - People Solutions Delivered",
     "url": "https://www.google.com/search?q=Optimus+-+People+Solutions+Delivered+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Corrosion Resistant Alloys, LP",
     "url": "https://www.google.com/search?q=Corrosion+Resistant+Alloys%2C+LP+careers+Houston+oil+gas+jobs+reservoir+production+engineer",
-    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles",
-    "capture_method": "Google career search fallback; direct job capture not guaranteed because no public API/feed is configured."
+    "focus": "Houston oil and gas, petroleum/reservoir/production, operations, data analytics, midstream/downstream/upstream roles"
   },
   {
     "name": "Silicon Ranch",
     "url": "https://www.google.com/search?q=Silicon+Ranch+careers+energy+jobs",
-    "focus": "Renewable energy engineering, operations, analytics",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Renewable energy engineering, operations, analytics"
   },
   {
     "name": "Moment Energy",
     "url": "https://www.google.com/search?q=Moment+Energy+careers+energy+jobs",
-    "focus": "Energy storage engineering and analytics",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Energy storage engineering and analytics"
   },
   {
     "name": "Group14 Technologies",
     "url": "https://www.google.com/search?q=Group14+Technologies+careers+energy+jobs",
-    "focus": "Battery materials and energy storage",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Battery materials and energy storage"
   },
   {
     "name": "Sila",
     "url": "https://www.google.com/search?q=Sila+careers+energy+jobs",
-    "focus": "Battery technology and energy materials",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Battery technology and energy materials"
   },
   {
     "name": "Form Energy",
     "url": "https://www.google.com/search?q=Form+Energy+careers+energy+jobs",
-    "focus": "Long-duration energy storage",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Long-duration energy storage"
   },
   {
     "name": "Redwood Materials",
     "url": "https://www.google.com/search?q=Redwood+Materials+careers+energy+jobs",
-    "focus": "Battery materials and circular energy systems",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Battery materials and circular energy systems"
   },
   {
     "name": "Crusoe",
     "url": "https://www.google.com/search?q=Crusoe+careers+energy+jobs",
-    "focus": "Energy infrastructure and data systems",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Energy infrastructure and data systems"
   },
   {
     "name": "Carbon America",
     "url": "https://www.google.com/search?q=Carbon+America+careers+energy+jobs",
-    "focus": "Carbon storage and CCS",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Carbon storage and CCS"
   },
   {
     "name": "Watershed",
     "url": "https://www.google.com/search?q=Watershed+careers+energy+jobs",
-    "focus": "Carbon data, climate analytics",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Carbon data, climate analytics"
   },
   {
     "name": "Commonwealth Fusion Systems",
     "url": "https://www.google.com/search?q=Commonwealth+Fusion+Systems+careers+energy+jobs",
-    "focus": "Advanced energy engineering",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Advanced energy engineering"
   },
   {
     "name": "Gridmatic",
     "url": "https://www.google.com/search?q=Gridmatic+careers+energy+jobs",
-    "focus": "Energy analytics, power markets, data science",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Energy analytics, power markets, data science"
   },
   {
     "name": "TRIO",
     "url": "https://www.google.com/search?q=TRIO+careers+energy+jobs",
-    "focus": "Energy advisory, natural gas/electricity analytics",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Energy advisory, natural gas/electricity analytics"
   },
   {
     "name": "Solar Landscape",
     "url": "https://www.google.com/search?q=Solar+Landscape+careers+energy+jobs",
-    "focus": "Renewable energy project analytics",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Renewable energy project analytics"
   },
   {
     "name": "HASI",
     "url": "https://www.google.com/search?q=HASI+careers+energy+jobs",
-    "focus": "Renewable energy finance and analytics",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Renewable energy finance and analytics"
   },
   {
     "name": "Energy Recovery",
     "url": "https://www.google.com/search?q=Energy+Recovery+careers+energy+jobs",
-    "focus": "Industrial energy efficiency",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Industrial energy efficiency"
   },
   {
     "name": "Generate Capital",
     "url": "https://www.google.com/search?q=Generate+Capital+careers+energy+jobs",
-    "focus": "Sustainable infrastructure and energy transition",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Sustainable infrastructure and energy transition"
   },
   {
     "name": "Nexamp",
     "url": "https://www.google.com/search?q=Nexamp+careers+energy+jobs",
-    "focus": "Renewable energy operations and development",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Renewable energy operations and development"
   },
   {
     "name": "Arcadia",
     "url": "https://www.google.com/search?q=Arcadia+careers+energy+jobs",
-    "focus": "Energy data and analytics",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Energy data and analytics"
   },
   {
     "name": "PowerFlex",
     "url": "https://www.google.com/search?q=PowerFlex+careers+energy+jobs",
-    "focus": "Renewable energy and distributed energy systems",
-    "capture_method": "Greenhouse/Lever API target where available"
+    "focus": "Renewable energy and distributed energy systems"
   }
 ]
