@@ -131,3 +131,15 @@ This prevents old 2025 postings from appearing in the matched jobs list.
 ### Back-to-top button
 
 The dashboard now includes a floating `↑ Top` button that appears after scrolling and returns the user to the top of the page.
+
+## Geothermal watchlist expansion
+
+This version adds `config/geothermal_company_watchlist.json` and merges it into the normal source targets. The geothermal watchlist covers U.S.-focused geothermal operators, developers, EGS startups, closed-loop geothermal startups, heat-pump companies, service companies, national labs, and geothermal job boards.
+
+Known direct ATS feeds added:
+
+- `sage49` on Greenhouse for Sage Geosystems
+- `quaise` on Greenhouse for Quaise Energy
+- `Zanskar` on Lever for Zanskar
+
+For companies that do not expose a clean public API feed, the app adds a company career-page/search fallback so the dashboard can still act as a watchlist.

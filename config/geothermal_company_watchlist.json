@@ -1,0 +1,577 @@
+{
+  "notes": "Expanded U.S.-focused geothermal watchlist covering large operators, next-generation geothermal startups, geothermal heat-pump companies, service/engineering companies with geothermal work, national labs, and geothermal-specific job boards. It is intentionally broad but not guaranteed to include every private company because small firms change websites and ATS systems frequently.",
+  "greenhouse_boards": [
+    {
+      "company": "Sage Geosystems",
+      "board": "sage49",
+      "focus": "pressure geothermal, geothermal storage, engineering and operations"
+    },
+    {
+      "company": "Quaise Energy",
+      "board": "quaise",
+      "focus": "ultra-deep geothermal drilling, RF/mm-wave drilling, Houston/Boston engineering"
+    }
+  ],
+  "lever_sites": [
+    {
+      "company": "Zanskar",
+      "site": "Zanskar",
+      "focus": "geothermal exploration, data science, reservoir engineering, Utah"
+    }
+  ],
+  "company_search_fallbacks": [
+    {
+      "name": "Calpine",
+      "url": "https://www.calpine.com/careers/",
+      "focus": "The Geysers geothermal operations, plant engineering, production analytics",
+      "category": "large operator",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Ormat Technologies",
+      "url": "https://www.ormat.com/en/company/careers/",
+      "focus": "geothermal power plants, reservoir operations, project engineering",
+      "category": "large operator",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Terra-Gen",
+      "url": "https://www.terra-gen.com/careers/",
+      "focus": "geothermal and renewable power development/operations",
+      "category": "operator/developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Cyrq Energy",
+      "url": "https://www.cyrqenergy.com/careers/",
+      "focus": "geothermal power operations and asset management",
+      "category": "operator/developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Coso Operating Company",
+      "url": "https://www.google.com/search?q=Coso+Operating+Company+careers+geothermal+jobs",
+      "focus": "Coso geothermal field operations and power plant roles",
+      "category": "operator/developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "BHE Renewables",
+      "url": "https://www.brkenergy.com/careers",
+      "focus": "geothermal and renewable generation assets",
+      "category": "large operator",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "EnergySource Minerals",
+      "url": "https://www.energysourceminerals.com/careers",
+      "focus": "Salton Sea geothermal brine, lithium, power generation",
+      "category": "operator/developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Controlled Thermal Resources",
+      "url": "https://ctrgeothermal.com/careers/",
+      "focus": "Salton Sea geothermal lithium and power development",
+      "category": "developer/startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Open Mountain Energy",
+      "url": "https://www.openmountainenergy.com/careers",
+      "focus": "geothermal development, power generation, project engineering",
+      "category": "developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Enel Green Power North America",
+      "url": "https://www.enelgreenpower.com/careers",
+      "focus": "geothermal and renewable energy operations/projects",
+      "category": "large renewable operator",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Chevron New Energies",
+      "url": "https://careers.chevron.com/",
+      "focus": "geothermal, hydrogen, carbon storage, subsurface and energy transition roles",
+      "category": "major energy company",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "ExxonMobil Low Carbon Solutions",
+      "url": "https://jobs.exxonmobil.com/",
+      "focus": "low carbon, CCS, subsurface and potential geothermal-adjacent roles",
+      "category": "major energy company",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "SLB New Energy",
+      "url": "https://careers.slb.com/",
+      "focus": "geothermal, reservoir, drilling, subsurface digital, carbon storage",
+      "category": "energy technology/service",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Baker Hughes",
+      "url": "https://careers.bakerhughes.com/",
+      "focus": "geothermal drilling, turbomachinery, reservoir/energy technology",
+      "category": "energy technology/service",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Halliburton",
+      "url": "https://jobs.halliburton.com/",
+      "focus": "geothermal drilling/completions, reservoir, stimulation, production technology",
+      "category": "energy technology/service",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Nabors Energy Transition",
+      "url": "https://www.nabors.com/careers/",
+      "focus": "geothermal drilling, rig technology, energy transition",
+      "category": "drilling/service",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "NOV",
+      "url": "https://www.nov.com/careers",
+      "focus": "drilling equipment and geothermal well construction technology",
+      "category": "drilling/service",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Fervo Energy",
+      "url": "https://fervoenergy.com/careers/",
+      "focus": "EGS, geothermal reservoir engineering, drilling, production analytics, Houston/Golden/Oakland/Reno/Salt Lake City",
+      "category": "next-generation geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Sage Geosystems",
+      "url": "https://www.sagegeosystems.com/careers",
+      "focus": "pressure geothermal, energy storage, project engineering, Houston/Texas",
+      "category": "next-generation geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Zanskar",
+      "url": "https://zanskar.com/careers",
+      "focus": "geothermal exploration, reservoir engineering, geology, data science, Utah",
+      "category": "geothermal exploration startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Quaise Energy",
+      "url": "https://www.quaise.energy/careers",
+      "focus": "ultra-deep geothermal drilling, millimeter-wave drilling, Houston/Boston",
+      "category": "deep geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "XGS Energy",
+      "url": "https://www.xgsenergy.com/careers/",
+      "focus": "closed-loop geothermal, engineering, field operations, subsurface",
+      "category": "closed-loop geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "GreenFire Energy",
+      "url": "https://www.greenfireenergy.com/careers/",
+      "focus": "closed-loop geothermal, retrofit geothermal, project development",
+      "category": "closed-loop geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Eavor",
+      "url": "https://www.eavor.com/careers/",
+      "focus": "closed-loop geothermal, drilling, completions, reservoir/thermal engineering",
+      "category": "closed-loop geothermal developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Bedrock Energy",
+      "url": "https://www.bedrockenergy.com/careers",
+      "focus": "geothermal heating/cooling, distributed geothermal, drilling and project engineering",
+      "category": "geothermal heat startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Dandelion Energy",
+      "url": "https://dandelionenergy.com/careers",
+      "focus": "geothermal heat pumps, building decarbonization, operations/data roles",
+      "category": "geothermal heat startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Darcy Solutions",
+      "url": "https://www.darcysolutions.com/careers",
+      "focus": "aquifer thermal energy storage and geothermal heat exchange",
+      "category": "geothermal heat startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Brightcore Energy",
+      "url": "https://www.brightcoreenergy.com/careers/",
+      "focus": "geothermal heat pumps, clean energy project development",
+      "category": "geothermal heat/renewables",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Geothermal Technologies, Inc.",
+      "url": "https://www.google.com/search?q=Geothermal+Technologies+Inc+careers+geothermal+jobs",
+      "focus": "geothermal technology development and power generation",
+      "category": "geothermal technology startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Geothermal Radar",
+      "url": "https://www.geothermalradar.com/",
+      "focus": "geothermal exploration, resource screening, data/analytics",
+      "category": "geothermal exploration/data",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "400C Energy",
+      "url": "https://www.google.com/search?q=400C+Energy+careers+geothermal+jobs",
+      "focus": "superhot geothermal and high-temperature geothermal development",
+      "category": "superhot geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Dig Energy",
+      "url": "https://www.google.com/search?q=Dig+Energy+careers+geothermal+jobs",
+      "focus": "geothermal drilling/startup roles and subsurface technology",
+      "category": "geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Gradient Geothermal",
+      "url": "https://www.gradientgeothermal.com/careers",
+      "focus": "oilfield-to-geothermal, produced fluids, geothermal power projects",
+      "category": "geothermal startup/developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Transitional Energy",
+      "url": "https://www.transitional.energy/careers",
+      "focus": "geothermal from oil and gas wells, energy transition, operations",
+      "category": "geothermal startup/developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "EarthBridge Energy",
+      "url": "https://www.earthbridgeenergy.com/careers",
+      "focus": "geothermal storage, subsurface heat and reservoir engineering",
+      "category": "geothermal storage startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Eden GeoPower",
+      "url": "https://www.edengeopower.com/careers",
+      "focus": "reservoir stimulation, EGS, permeability enhancement, geoscience/data roles",
+      "category": "EGS technology startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "AltaRock Energy",
+      "url": "https://www.google.com/search?q=AltaRock+Energy+careers+geothermal+jobs",
+      "focus": "EGS, geothermal reservoir stimulation and R&D",
+      "category": "geothermal technology/developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Baseload Capital",
+      "url": "https://www.baseloadcap.com/career",
+      "focus": "geothermal project investment/development, international geothermal roles",
+      "category": "geothermal investor/developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "DeepPower",
+      "url": "https://deeppower.com/careers/",
+      "focus": "deep geothermal drilling, engineering, subsurface technology",
+      "category": "deep geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Mazama Energy",
+      "url": "https://www.google.com/search?q=Mazama+Energy+careers+geothermal+jobs",
+      "focus": "geothermal startup and project development",
+      "category": "geothermal startup",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Ignis Energy",
+      "url": "https://www.google.com/search?q=Ignis+Energy+geothermal+careers+USA+jobs",
+      "focus": "geothermal development and subsurface/power project roles",
+      "category": "geothermal developer",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Teverra",
+      "url": "https://www.teverra.com/careers",
+      "focus": "geothermal, subsurface, geomechanics, reservoir engineering consulting",
+      "category": "geothermal/subsurface consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Capuano Engineering",
+      "url": "https://www.google.com/search?q=Capuano+Engineering+geothermal+careers+jobs",
+      "focus": "geothermal drilling engineering and well construction",
+      "category": "geothermal drilling consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Thermochem",
+      "url": "https://www.thermochem.com/careers/",
+      "focus": "geothermal chemistry, reservoir monitoring, tracer and geochemical services",
+      "category": "geothermal services/chemistry",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Geologica Geothermal Group",
+      "url": "https://www.geologica.net/careers",
+      "focus": "geothermal resource assessment, exploration, reservoir consulting",
+      "category": "geothermal consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "GeothermEx",
+      "url": "https://careers.slb.com/",
+      "focus": "geothermal reservoir consulting within SLB/GeothermEx heritage",
+      "category": "geothermal consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "POWER Engineers",
+      "url": "https://www.powereng.com/careers/",
+      "focus": "geothermal, power generation, transmission, project engineering",
+      "category": "engineering consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Black & Veatch",
+      "url": "https://www.bv.com/careers/",
+      "focus": "geothermal power, renewable energy, project engineering",
+      "category": "engineering consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Jacobs",
+      "url": "https://careers.jacobs.com/",
+      "focus": "geothermal, water, energy, infrastructure and subsurface projects",
+      "category": "engineering consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Burns & McDonnell",
+      "url": "https://www.burnsmcd.com/careers",
+      "focus": "geothermal, power, renewables, engineering design",
+      "category": "engineering consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Stantec",
+      "url": "https://www.stantec.com/en/careers",
+      "focus": "geothermal, mining, energy, geoscience and environmental roles",
+      "category": "engineering consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "WSP",
+      "url": "https://www.wsp.com/en-us/careers",
+      "focus": "geothermal, underground energy, environment, energy transition",
+      "category": "engineering consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Tetra Tech",
+      "url": "https://www.tetratech.com/en/careers",
+      "focus": "geothermal, water, energy, environmental consulting",
+      "category": "engineering consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "AECOM",
+      "url": "https://aecom.com/careers/",
+      "focus": "geothermal, energy infrastructure and environmental projects",
+      "category": "engineering consulting",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Atlas Copco",
+      "url": "https://www.atlascopco.com/en-us/jobs",
+      "focus": "geothermal drilling equipment, compressors, drilling systems",
+      "category": "equipment/service",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Vallourec",
+      "url": "https://www.vallourec.com/careers/",
+      "focus": "geothermal tubulars, wells, energy transition",
+      "category": "equipment/service",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Mitsubishi Power Americas",
+      "url": "https://power.mhi.com/regions/amer/careers",
+      "focus": "power generation, turbines, geothermal-adjacent energy systems",
+      "category": "power equipment",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Fuji Electric Corp. of America",
+      "url": "https://americas.fujielectric.com/careers/",
+      "focus": "geothermal turbines, power equipment and engineering roles",
+      "category": "power equipment",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Turboden",
+      "url": "https://www.turboden.com/company/careers",
+      "focus": "ORC/binary power cycle equipment for geothermal",
+      "category": "power equipment",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Exergy International",
+      "url": "https://www.exergy-orc.com/careers/",
+      "focus": "ORC geothermal power equipment and engineering",
+      "category": "power equipment",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Climeon",
+      "url": "https://climeon.com/careers/",
+      "focus": "low-temperature geothermal heat power systems",
+      "category": "power equipment",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "GA Drilling",
+      "url": "https://www.gadrilling.com/careers/",
+      "focus": "deep drilling and geothermal drilling technology",
+      "category": "drilling technology",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "WaterFurnace",
+      "url": "https://www.waterfurnace.com/careers",
+      "focus": "geothermal heat pump manufacturing, engineering and technical roles",
+      "category": "geothermal heat pump",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "ClimateMaster",
+      "url": "https://www.climatemaster.com/careers",
+      "focus": "geothermal heat pumps, HVAC engineering and product roles",
+      "category": "geothermal heat pump",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Enertech Global",
+      "url": "https://enertechusa.com/careers/",
+      "focus": "geothermal heat pump systems and manufacturing",
+      "category": "geothermal heat pump",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "GeoComfort",
+      "url": "https://www.geocomfort.com/careers",
+      "focus": "geothermal heat pump systems and energy efficiency",
+      "category": "geothermal heat pump",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Bosch Home Comfort USA",
+      "url": "https://www.bosch-homecomfort.com/us/en/ocs/residential/career/",
+      "focus": "geothermal heat pumps and HVAC energy systems",
+      "category": "geothermal heat pump",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "NREL",
+      "url": "https://www.nrel.gov/careers/",
+      "focus": "geothermal, renewable energy, data science, reservoir/energy systems research",
+      "category": "national lab",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Idaho National Laboratory",
+      "url": "https://inl.gov/careers/",
+      "focus": "geothermal, nuclear-renewable integration, energy systems research",
+      "category": "national lab",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Lawrence Berkeley National Laboratory",
+      "url": "https://lbl.referrals.selectminds.com/",
+      "focus": "geothermal, reservoir modeling, geoscience, subsurface energy research",
+      "category": "national lab",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Sandia National Laboratories",
+      "url": "https://www.sandia.gov/careers/",
+      "focus": "geothermal drilling, subsurface, energy systems R&D",
+      "category": "national lab",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "National Energy Technology Laboratory",
+      "url": "https://netl.doe.gov/about/careers",
+      "focus": "geothermal-adjacent subsurface, carbon storage, energy systems research",
+      "category": "national lab",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Oak Ridge National Laboratory",
+      "url": "https://jobs.ornl.gov/",
+      "focus": "geothermal heat pumps, energy systems, materials, data science",
+      "category": "national lab",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "U.S. Geological Survey",
+      "url": "https://www.usajobs.gov/Search/Results?a=IN08",
+      "focus": "geothermal resources, geoscience, hydrogeology, federal roles",
+      "category": "federal agency",
+      "capture_method": "Career-page/search fallback; automatic capture when postings appear through Adzuna/USAJOBS or the listed ATS feed."
+    },
+    {
+      "name": "Geothermal Rising Job Board",
+      "url": "https://geothermal.org/resources/job-board",
+      "focus": "geothermal-specific job board across companies and universities",
+      "category": "job board",
+      "capture_method": "Direct job board; manually review plus search fallback."
+    },
+    {
+      "name": "Breakthrough Energy Ventures Job Board",
+      "url": "https://bevjobs.breakthroughenergy.org/jobs",
+      "focus": "startup jobs across geothermal, climate and energy transition companies",
+      "category": "job board",
+      "capture_method": "Direct job board; manually review plus search fallback."
+    },
+    {
+      "name": "Terra.do Climate Jobs",
+      "url": "https://terra.do/climate-jobs/job-board/",
+      "focus": "climate and energy jobs including geothermal startups",
+      "category": "job board",
+      "capture_method": "Direct job board; manually review plus search fallback."
+    },
+    {
+      "name": "Climatebase",
+      "url": "https://climatebase.org/jobs",
+      "focus": "climate, geothermal, renewable energy and energy analytics jobs",
+      "category": "job board",
+      "capture_method": "Direct job board; manually review plus search fallback."
+    },
+    {
+      "name": "Clean Energy Jobs",
+      "url": "https://www.cleanenergyjobsearch.com/",
+      "focus": "renewable energy, geothermal and clean-tech jobs",
+      "category": "job board",
+      "capture_method": "Direct job board; manually review plus search fallback."
+    }
+  ]
+}

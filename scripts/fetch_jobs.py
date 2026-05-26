@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = ROOT / "config" / "profile.json"
 SOURCE_TARGETS_PATH = ROOT / "config" / "source_targets.json"
 WATCHLIST_PATH = ROOT / "config" / "company_watchlist.json"
+GEOTHERMAL_WATCHLIST_PATH = ROOT / "config" / "geothermal_company_watchlist.json"
 OUTPUT_PATH = ROOT / "data" / "jobs.json"
 
 USER_AGENT = "EnergyJobRadar/2.0 (+https://github.com/)"
@@ -61,8 +62,29 @@ def load_profile() -> Dict[str, Any]:
     return load_json(PROFILE_PATH, {})
 
 
+def _merge_unique_items(base: Dict[str, Any], extra: Dict[str, Any], key: str, identity_field: str) -> None:
+    """Merge source-target lists without duplicating companies/ATS tokens."""
+    existing = {str(item.get(identity_field, item.get("name", item.get("company", "")))).lower().strip()
+                for item in base.get(key, []) if isinstance(item, dict)}
+    for item in extra.get(key, []) if isinstance(extra, dict) else []:
+        if not isinstance(item, dict):
+            continue
+        identity = str(item.get(identity_field, item.get("name", item.get("company", "")))).lower().strip()
+        if identity and identity not in existing:
+            base.setdefault(key, []).append(item)
+            existing.add(identity)
+
+
 def load_source_targets() -> Dict[str, Any]:
-    return load_json(SOURCE_TARGETS_PATH, {"greenhouse_boards": [], "lever_sites": [], "company_search_fallbacks": []})
+    targets = load_json(SOURCE_TARGETS_PATH, {"greenhouse_boards": [], "lever_sites": [], "company_search_fallbacks": []})
+    geothermal = load_json(GEOTHERMAL_WATCHLIST_PATH, {})
+    if isinstance(geothermal, dict):
+        _merge_unique_items(targets, geothermal, "greenhouse_boards", "board")
+        _merge_unique_items(targets, geothermal, "lever_sites", "site")
+        _merge_unique_items(targets, geothermal, "company_search_fallbacks", "name")
+        if geothermal.get("notes"):
+            targets["geothermal_watchlist_notes"] = geothermal.get("notes")
+    return targets
 
 
 def env(name: str) -> str:
