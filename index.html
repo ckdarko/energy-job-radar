@@ -78,10 +78,19 @@
     </section>
 
     <section id="jobs" class="jobs-layout">
-      <aside class="panel side-panel">
-        <h2>Target companies</h2>
-        <p>Use this list for networking and manual checks when APIs miss employer career-page postings.</p>
-        <ul id="companyList" class="company-list"></ul>
+      <aside class="panel side-panel company-panel">
+        <div class="company-panel__header">
+          <h2>Target companies</h2>
+          <p>Use this list for networking and manual checks when APIs miss employer career-page postings.</p>
+        </div>
+        <div class="company-tools">
+          <label for="companySearch">Search target companies</label>
+          <input id="companySearch" type="search" placeholder="Example: Fervo, Chevron, Ormat, Houston" />
+          <p id="companyCount" class="company-count">Loading companies…</p>
+        </div>
+        <div class="company-scroll" tabindex="0" aria-label="Scrollable target company list">
+          <ul id="companyList" class="company-list"></ul>
+        </div>
       </aside>
       <section class="panel job-panel">
         <div class="section-heading">

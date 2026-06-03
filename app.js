@@ -94,6 +94,7 @@ let allJobs = [];
 let savedState = JSON.parse(localStorage.getItem("energyJobRadarState") || "{}");
 let metadata = {};
 let companyWatchlist = TARGET_COMPANIES;
+let visibleCompanyWatchlist = TARGET_COMPANIES;
 const MIN_POSTED_DATE = new Date("2026-01-01T00:00:00Z");
 const MAX_JOB_AGE_DAYS = 120;
 
@@ -120,6 +121,28 @@ const isStalePosting = (job) => {
   return daysAgo(job.date_posted) > MAX_JOB_AGE_DAYS;
 };
 const normalize = (s = "") => s.toString().toLowerCase();
+const escapeHtml = (value = "") => value.toString()
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;")
+  .replace(/'/g, "&#39;");
+
+function careerSearchUrl(companyName = "") {
+  const query = encodeURIComponent(`${companyName} careers geothermal petroleum reservoir production engineer United States`.trim());
+  return `https://www.google.com/search?q=${query}`;
+}
+
+function safeUrl(value, fallbackName = "") {
+  const fallback = careerSearchUrl(fallbackName || "energy company");
+  if (!value) return fallback;
+  try {
+    const url = new URL(value, window.location.href);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : fallback;
+  } catch (_) {
+    return fallback;
+  }
+}
 
 function regexHit(patterns, text) {
   return patterns.some((pattern) => pattern.test(text || ""));
@@ -248,16 +271,88 @@ function enrich(job) {
   return { ...job, role_family, match_reasons: reasons, fit_score: score };
 }
 
-async function loadCompanyWatchlist() {
-  try {
-    const response = await fetch("config/company_watchlist.json", { cache: "no-store" });
-    if (!response.ok) throw new Error("company_watchlist.json missing");
-    const data = await response.json();
-    if (Array.isArray(data) && data.length) companyWatchlist = data;
-  } catch (error) {
-    console.warn("Using built-in target company list because company_watchlist.json could not be loaded.", error);
-  }
+function normalizeCompanyItem(item, sourceTag = "Target company") {
+  if (!item || typeof item !== "object") return null;
+  const name = item.name || item.company || item.organization || item.employer;
+  if (!name) return null;
+  const url = item.url || item.careers_url || item.career_url || item.jobs_url || item.apply_url || item.website;
+  const focus = item.focus || item.description || item.capture_method || item.notes || "Target company";
+  return {
+    name: name.toString().trim(),
+    url: safeUrl(url, name),
+    focus: focus.toString().trim(),
+    source_tag: item.source_tag || item.source_list || sourceTag,
+    direct_capture: item.direct_capture,
+    capture_method: item.capture_method
+  };
 }
+
+function extractCompanyItems(data, sourceTag) {
+  if (Array.isArray(data)) {
+    return data.map((item) => normalizeCompanyItem(item, sourceTag)).filter(Boolean);
+  }
+  if (!data || typeof data !== "object") return [];
+  const items = [];
+  ["company_search_fallbacks", "greenhouse_boards", "lever_sites", "companies", "targets"].forEach((key) => {
+    if (Array.isArray(data[key])) {
+      data[key].forEach((item) => {
+        const normalized = normalizeCompanyItem(item, sourceTag);
+        if (normalized) items.push(normalized);
+      });
+    }
+  });
+  return items;
+}
+
+function mergeCompanyLists(items) {
+  const byName = new Map();
+  items.filter(Boolean).forEach((item) => {
+    const key = normalize(item.name).replace(/[^a-z0-9]+/g, "").trim();
+    if (!key) return;
+    const existing = byName.get(key);
+    if (!existing) {
+      byName.set(key, item);
+      return;
+    }
+    const existingIsFallback = /google\.com\/search/i.test(existing.url || "");
+    const itemIsDirect = item.url && !/google\.com\/search/i.test(item.url);
+    byName.set(key, {
+      ...existing,
+      ...item,
+      url: existingIsFallback && itemIsDirect ? item.url : existing.url,
+      focus: existing.focus && existing.focus.length >= (item.focus || "").length ? existing.focus : item.focus,
+      source_tag: [existing.source_tag, item.source_tag].filter(Boolean).filter((v, i, arr) => arr.indexOf(v) === i).join(" + ")
+    });
+  });
+  return [...byName.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+async function loadJsonConfig(path) {
+  const response = await fetch(path, { cache: "no-store" });
+  if (!response.ok) throw new Error(`${path} missing`);
+  return response.json();
+}
+
+async function loadCompanyWatchlist() {
+  const configs = [
+    { path: "config/company_watchlist.json", label: "Main watchlist" },
+    { path: "config/geothermal_company_watchlist.json", label: "Geothermal watchlist" },
+    { path: "config/houston_oil_gas_watchlist.json", label: "Houston oil & gas" },
+    { path: "config/source_targets.json", label: "ATS/source targets" }
+  ];
+  const collected = [...TARGET_COMPANIES];
+  for (const config of configs) {
+    try {
+      const data = await loadJsonConfig(config.path);
+      collected.push(...extractCompanyItems(data, config.label));
+    } catch (error) {
+      console.warn(`Could not load ${config.path}; continuing with available company lists.`, error);
+    }
+  }
+  companyWatchlist = mergeCompanyLists(collected);
+  visibleCompanyWatchlist = companyWatchlist;
+}
+
 
 async function loadJobs() {
   await loadCompanyWatchlist();
@@ -278,12 +373,30 @@ async function loadJobs() {
 }
 
 function renderStaticContent() {
-  el("keywordCloud").innerHTML = PROFILE_KEYWORDS.map((k) => `<span class="pill pill--primary">${k}</span>`).join("");
-  el("companyList").innerHTML = companyWatchlist.slice(0, 140).map((c) => `
-    <li><a href="${c.url}" target="_blank" rel="noopener">${c.name}</a><small>${c.focus || c.capture_method || "Target company"}</small></li>
-  `).join("");
+  el("keywordCloud").innerHTML = PROFILE_KEYWORDS.map((k) => `<span class="pill pill--primary">${escapeHtml(k)}</span>`).join("");
+  renderCompanyList();
   el("lastUpdated").textContent = `Last updated: ${fmtDate(metadata.last_updated)}${metadata.mode === "sample" ? " (sample data)" : ""}. Showing United States-only CV-matched postings from 2026 onward and within about ${MAX_JOB_AGE_DAYS} days.`;
 }
+
+function renderCompanyList() {
+  const q = normalize(el("companySearch")?.value || "");
+  visibleCompanyWatchlist = companyWatchlist.filter((c) => {
+    const text = normalize(`${c.name || ""} ${c.focus || ""} ${c.source_tag || ""} ${c.capture_method || ""}`);
+    return !q || text.includes(q);
+  });
+  const listHtml = visibleCompanyWatchlist.map((c) => `
+    <li>
+      <a href="${safeUrl(c.url, c.name)}" target="_blank" rel="noopener">${escapeHtml(c.name)}</a>
+      <small>${escapeHtml(c.focus || c.capture_method || "Target company")}</small>
+      ${c.source_tag ? `<span class="company-source">${escapeHtml(c.source_tag)}</span>` : ""}
+    </li>
+  `).join("");
+  el("companyList").innerHTML = listHtml || `<li><small>No target companies match this search.</small></li>`;
+  const countText = `${visibleCompanyWatchlist.length} of ${companyWatchlist.length} target companies shown`;
+  const countEl = el("companyCount");
+  if (countEl) countEl.textContent = countText;
+}
+
 
 function populateSources() {
   const select = el("sourceFilter");
@@ -473,6 +586,10 @@ function sampleJobs() {
   el(id).addEventListener("change", render);
 });
 el("exportCsvBtn").addEventListener("click", exportCsv);
+const companySearchInput = el("companySearch");
+if (companySearchInput) {
+  companySearchInput.addEventListener("input", renderCompanyList);
+}
 const backToTopBtn = el("backToTopBtn");
 if (backToTopBtn) {
   backToTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));

@@ -173,3 +173,24 @@ Main tuning is in `config/profile.json`:
 - `cv_target_title_keywords`: preferred titles.
 - `hard_excluded_title_patterns`: roles to remove even if they mention energy.
 - `cv_relevant_title_patterns`: titles treated as strong matches.
+
+## Mobile layout and target-company scroll update
+
+This version improves the dashboard layout for phone screens and adds a separate scrollable panel for the target-company/watchlist area.
+
+Files changed:
+
+```text
+index.html
+styles.css
+app.js
+README.md
+```
+
+What changed:
+
+- The target-company list now sits inside its own scroll container instead of making the whole page extremely long.
+- A target-company search box was added so companies can be filtered by name, focus area, or source group.
+- The dashboard now loads and merges company targets from `company_watchlist.json`, `geothermal_company_watchlist.json`, `houston_oil_gas_watchlist.json`, and `source_targets.json`.
+- Duplicate companies are removed by name.
+- Mobile styling was improved for small screens: cleaner hero spacing, full-width action buttons, stacked filters, touch-friendly inputs, compact job cards, and a shorter company-scroll panel.
