@@ -230,7 +230,7 @@ def fallback_job_search_url(job: Dict[str, Any]) -> str:
         for field in ("title", "company", "location")
         if str(job.get(field, "")).strip()
     )
-    query = f"{query} job posting".strip() or "energy job posting"
+    query = f"{query} job posting United States".strip() or "energy job posting United States"
     return "https://www.google.com/search?" + urlencode({"q": query})
 
 
@@ -279,31 +279,234 @@ def keyword_hits(text: str, keywords: Iterable[str]) -> List[str]:
     return [kw for kw in keywords if contains_keyword(text, kw)]
 
 
+
+def regex_hits(text: str, patterns: Iterable[str]) -> List[str]:
+    """Return regex patterns that match text, ignoring invalid patterns."""
+    hits: List[str] = []
+    for pattern in patterns or []:
+        try:
+            if re.search(str(pattern), text or "", flags=re.I):
+                hits.append(str(pattern))
+        except re.error:
+            continue
+    return hits
+
+
+def job_search_text(job: Dict[str, Any]) -> str:
+    return f"{job.get('title','')} {job.get('company','')} {job.get('description','')} {job.get('location','')} {job.get('query','')}".lower()
+
+
+def job_title_text(job: Dict[str, Any]) -> str:
+    return str(job.get("title", "") or "").lower()
+
+
+def cv_relevance_signals(job: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
+    """Evaluate whether a posting is close to Caleb's CV/resume.
+
+    The gate is intentionally stricter than ordinary keyword matching. A posting must connect to
+    petroleum/reservoir/production/geothermal/subsurface/CCUS/hydrogen-storage work, or be an energy-data
+    role explicitly tied to those domains. This removes generic software, IT, civil/electrical, technician,
+    operator, purchasing, and manufacturing roles that happen to mention energy.
+    """
+    if job.get("is_watchlist_item"):
+        return {"passes": True, "reasons": ["company watchlist link"]}
+
+    title = job_title_text(job)
+    text = job_search_text(job)
+    title_and_query = f"{title} {str(job.get('query','')).lower()}"
+
+    excluded_title_hits = regex_hits(title, profile.get("hard_excluded_title_patterns", []))
+    if excluded_title_hits:
+        return {"passes": False, "reasons": ["excluded title pattern"] + excluded_title_hits[:3]}
+
+    domain_hits = keyword_hits(text, profile.get("cv_core_domain_keywords", []))
+    title_keyword_hits = keyword_hits(title_and_query, profile.get("cv_target_title_keywords", []))
+    skill_hits = keyword_hits(text, profile.get("cv_skill_keywords", []))
+    method_hits = keyword_hits(text, profile.get("cv_method_keywords", []))
+    relevant_title_hits = regex_hits(title_and_query, profile.get("cv_relevant_title_patterns", []))
+
+    # Generic technology/data roles are only relevant when the posting is explicitly about energy/subsurface work.
+    generic_tech_title = bool(re.search(r"\b(software|embedded|firmware|validation|analytics engineer|IT|cloud|platform|systems design|systems architect)\b", title, flags=re.I))
+    if generic_tech_title and not keyword_hits(text, ["geothermal", "reservoir", "petroleum", "oil and gas", "subsurface", "production optimization", "carbon storage", "CCUS", "hydrogen storage"]):
+        return {"passes": False, "reasons": ["generic tech/data role without subsurface or energy-domain signal"]}
+
+    # Avoid generic energy roles that are far from the CV, such as battery/manufacturing/purchasing/technician roles.
+    generic_energy_but_not_cv = bool(re.search(r"\b(battery|manufacturing|purchasing|procurement|supply chain|technician|operator|civil|electrical)\b", title, flags=re.I))
+    if generic_energy_but_not_cv and not relevant_title_hits:
+        return {"passes": False, "reasons": ["generic energy role outside CV/resume focus"]}
+
+    passes = False
+    if relevant_title_hits:
+        passes = True
+    elif title_keyword_hits:
+        passes = True
+    elif domain_hits and (skill_hits or method_hits):
+        passes = True
+    elif domain_hits and re.search(r"\b(engineer|analyst|scientist|modeler|modeller|researcher|specialist)\b", title, flags=re.I):
+        passes = True
+    elif re.search(r"\b(energy data analyst|energy data scientist|renewable energy analyst)\b", title, flags=re.I) and keyword_hits(text, ["geothermal", "oil and gas", "petroleum", "reservoir", "subsurface", "carbon storage", "CCUS", "hydrogen storage"]):
+        passes = True
+
+    reasons = []
+    reasons.extend(title_keyword_hits[:4])
+    reasons.extend(domain_hits[:5])
+    reasons.extend(skill_hits[:4])
+    reasons.extend(method_hits[:4])
+    if relevant_title_hits:
+        reasons.append("CV-matched title")
+    return {"passes": passes, "reasons": list(dict.fromkeys(reasons))[:12]}
+
+
+def passes_cv_relevance_gate(job: Dict[str, Any], profile: Dict[str, Any]) -> bool:
+    return bool(cv_relevance_signals(job, profile).get("passes"))
+
+
 def fit_score(job: Dict[str, Any], profile: Dict[str, Any]) -> int:
-    text = f"{job.get('title','')} {job.get('company','')} {job.get('description','')} {job.get('location','')} {job.get('query','')}".lower()
-    score = 25
+    text = job_search_text(job)
+    title = job_title_text(job)
+    score = 15
+
+    signals = cv_relevance_signals(job, profile)
+    if not signals.get("passes") and profile.get("strict_cv_matching", True) and not job.get("is_watchlist_item"):
+        return 0
+
     positive_hits = keyword_hits(text, profile.get("positive_keywords", []))
     negative_hits = keyword_hits(text, profile.get("negative_keywords", []))
-    title_hits = keyword_hits(str(job.get("title", "")).lower(), profile.get("positive_keywords", []))
+    domain_hits = keyword_hits(text, profile.get("cv_core_domain_keywords", []))
+    title_keyword_hits = keyword_hits(title, profile.get("cv_target_title_keywords", []))
+    skill_hits = keyword_hits(text, profile.get("cv_skill_keywords", []))
+    method_hits = keyword_hits(text, profile.get("cv_method_keywords", []))
+    relevant_title_hits = regex_hits(title, profile.get("cv_relevant_title_patterns", []))
 
-    score += min(len(positive_hits) * 5, 45)
-    score += min(len(title_hits) * 6, 20)
-    score -= min(len(negative_hits) * 10, 35)
+    score += min(len(domain_hits) * 8, 42)
+    score += min(len(title_keyword_hits) * 10, 30)
+    score += min(len(relevant_title_hits) * 14, 28)
+    score += min(len(skill_hits) * 4, 20)
+    score += min(len(method_hits) * 4, 18)
+    score += min(len(positive_hits) * 2, 16)
+    score -= min(len(negative_hits) * 8, 45)
 
     if re.search(r"new graduate|new grad|graduate engineer|entry[ -]?level|early career|associate|junior|phd|research engineer|full[- ]time|permanent", text):
-        score += 12
-    if re.search(r"geothermal|reservoir|production|subsurface|petroleum|carbon storage|ccs|ccus|hydrogen", text):
-        score += 12
-    if re.search(r"python|machine learning|data scientist|data analyst|analytics|simulation|cmg|petrel|kappa|eclipse", text):
+        score += 10
+    if re.search(r"geothermal|reservoir|production|subsurface|petroleum|carbon storage|ccs|ccus|hydrogen storage", text):
+        score += 10
+    if re.search(r"python|machine learning|data scientist|data analyst|analytics|simulation|cmg|petrel|kappa|eclipse|tnavigator|matlab|tableau", text):
         score += 8
-    if re.search(r"2027|may 2027|start date|available to start|full[- ]time", text):
-        score += 5
+    if re.search(r"\b(renewable energy analyst|energy transition analyst)\b", title) and re.search(r"geothermal|reservoir|subsurface|petroleum|oil and gas|carbon storage|ccs|ccus|hydrogen storage", text):
+        score += 18
+    if re.search(r"\b(senior|lead|principal|staff|manager|director|vp|vice president)\b", title) and not re.search(r"\b(junior|associate|early career|new graduate|graduate)\b", title):
+        score -= 12
+
+    # Penalize broad roles the user explicitly identified as irrelevant, even when the description mentions energy.
+    if regex_hits(title, profile.get("hard_excluded_title_patterns", [])):
+        score -= 100
+
     return max(0, min(100, score))
 
 
+
+US_STATE_NAMES = {
+    "alabama", "alaska", "arizona", "arkansas", "california", "colorado", "connecticut", "delaware",
+    "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky",
+    "louisiana", "maine", "maryland", "massachusetts", "michigan", "minnesota", "mississippi",
+    "missouri", "montana", "nebraska", "nevada", "new hampshire", "new jersey", "new mexico",
+    "new york", "north carolina", "north dakota", "ohio", "oklahoma", "oregon", "pennsylvania",
+    "rhode island", "south carolina", "south dakota", "tennessee", "texas", "utah", "vermont",
+    "virginia", "washington", "west virginia", "wisconsin", "wyoming", "district of columbia"
+}
+
+US_STATE_ABBREVIATIONS = {
+    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "DC"
+}
+
+US_CITY_HINTS = {
+    "houston", "midland", "dallas", "austin", "san antonio", "tulsa", "oklahoma city", "denver",
+    "bakersfield", "reno", "salt lake city", "golden", "oakland", "pittsburgh", "new orleans",
+    "lafayette", "anchorage", "imperial valley", "salton sea", "the geysers", "milford"
+}
+
+NON_US_LOCATION_PATTERNS = [
+    # Canada and Canadian province/city indicators
+    r"\bcanada\b", r"\bcalgary\b", r"\bedmonton\b", r"\balberta\b", r"\bvancouver\b",
+    r"\bbritish columbia\b", r"\btoronto\b", r"\bontario\b", r"\bottawa\b", r"\bmontreal\b",
+    r"\bquébec\b", r"\bquebec\b", r"\bsaskatchewan\b", r"\bmanitoba\b", r"\bwinnipeg\b",
+    r"\bnova scotia\b", r"\bnew brunswick\b", r"\bnewfoundland\b", r"\blabrador\b",
+    # Common non-US/global location signals that should not appear in a US-only dashboard
+    r"\bworldwide\b", r"\bglobal\b", r"\binternational\b", r"\beurope\b", r"\buk\b", r"\bunited kingdom\b",
+    r"\bgermany\b", r"\bfrance\b", r"\bnetherlands\b", r"\baustralia\b", r"\bindia\b", r"\brazil\b", r"\bmexico\b",
+]
+
+US_ONLY_SOURCES = {"USAJOBS", "Adzuna"}
+
+
+def has_us_location_signal(text: str) -> bool:
+    """Return True when a location string clearly points to the United States."""
+    raw = text or ""
+    lower = raw.lower()
+    if re.search(r"\b(united states|usa|u\.s\.|u\.s\.a\.|us only|usa only|remote[- ]?us|remote[- ]?usa)\b", lower):
+        return True
+    if any(state in lower for state in US_STATE_NAMES):
+        return True
+    if any(city in lower for city in US_CITY_HINTS):
+        return True
+    # Match city/state patterns such as Houston, TX or Golden, CO.
+    for abbr in US_STATE_ABBREVIATIONS:
+        if re.search(r"(?:,|\b)\s*" + re.escape(abbr) + r"\b", raw):
+            return True
+    return False
+
+
+def has_non_us_location_signal(text: str) -> bool:
+    """Return True when a job location/description clearly points outside the United States."""
+    lower = (text or "").lower()
+    return any(re.search(pattern, lower) for pattern in NON_US_LOCATION_PATTERNS)
+
+
+def is_us_based_job(job: Dict[str, Any], profile: Dict[str, Any]) -> bool:
+    """Keep only United States postings when profile.us_only is enabled.
+
+    The filter is deliberately strict: if a job says Canada, Worldwide, Global, Europe, etc., it is removed.
+    Remote roles are kept only when they say U.S./USA/United States or come from a U.S.-scoped source/company feed
+    without any non-U.S. signal.
+    """
+    if not profile.get("us_only", True):
+        return True
+
+    if job.get("is_watchlist_item"):
+        # These are company watch links, not individual postings. Keep them so the user can check U.S. career pages.
+        return True
+
+    location = str(job.get("location") or "")
+    title = str(job.get("title") or "")
+    company = str(job.get("company") or "")
+    description = str(job.get("description") or "")
+    query = str(job.get("query") or "")
+    source = str(job.get("source") or "")
+    location_text = f"{location} {title} {company} {query}"
+    full_text = f"{location_text} {description[:1200]}"
+
+    if has_non_us_location_signal(full_text):
+        return False
+
+    if has_us_location_signal(location_text):
+        return True
+
+    # USAJOBS and Adzuna are already queried through U.S. endpoints/locations, so keep unspecified/remote roles
+    # unless a non-U.S. signal was found above.
+    if any(source.startswith(src) for src in US_ONLY_SOURCES):
+        return True
+
+    # For public ATS feeds, keep plain "Remote" only if the source target was intentionally included as a U.S. company.
+    if re.fullmatch(r"\s*(remote|remote / hybrid|hybrid|not listed|location not provided)\s*", location, flags=re.I):
+        return bool(profile.get("keep_unspecified_remote_from_target_companies", True))
+
+    return False
+
+
 def is_excluded_job(job: Dict[str, Any], profile: Dict[str, Any]) -> bool:
-    """Hard-filter roles the user does not want, especially internships/co-ops."""
-    text = f"{job.get('title','')} {job.get('description','')} {job.get('company','')} {job.get('query','')}".lower()
+    """Hard-filter internships and roles that are outside the user's CV/resume focus."""
+    text = job_search_text(job)
+    title = job_title_text(job)
     patterns = [
         r"\bintern\b",
         r"\binternship\b",
@@ -316,6 +519,8 @@ def is_excluded_job(job: Dict[str, Any], profile: Dict[str, Any]) -> bool:
     ]
     if any(re.search(pattern, text) for pattern in patterns):
         return True
+    if regex_hits(title, profile.get("hard_excluded_title_patterns", [])):
+        return True
     for keyword in profile.get("excluded_keywords", []):
         if contains_keyword(text, keyword):
             return True
@@ -325,11 +530,11 @@ def is_excluded_job(job: Dict[str, Any], profile: Dict[str, Any]) -> bool:
 def role_family(job: Dict[str, Any]) -> str:
     text = f"{job.get('title','')} {job.get('description','')} {job.get('query','')}".lower()
     families = {
-        "geothermal": ["geothermal", "egs", "enhanced geothermal", "hydrothermal"],
-        "petroleum": ["petroleum", "reservoir", "well testing", "eor", "subsurface", "oil and gas"],
-        "production": ["production engineer", "production analyst", "operations", "facilities", "field engineer", "well performance"],
-        "data": ["data", "analytics", "machine learning", "python", "sql", "tableau", "power bi", "data scientist"],
-        "renewable": ["renewable", "energy transition", "carbon storage", "ccs", "ccus", "hydrogen", "solar", "wind", "power markets"],
+        "geothermal": ["geothermal", "egs", "enhanced geothermal", "hydrothermal", "superhot geothermal", "closed-loop geothermal"],
+        "petroleum": ["petroleum", "reservoir", "well testing", "pressure transient", "eor", "subsurface", "oil and gas", "upstream"],
+        "production": ["production engineer", "production analyst", "production data analyst", "production optimization", "production surveillance", "well performance", "digital oilfield"],
+        "data": ["subsurface data", "petroleum data", "geothermal data", "reservoir data", "production data", "python", "machine learning", "tableau", "cmg", "petrel"],
+        "renewable": ["carbon storage", "ccs", "ccus", "co2 storage", "hydrogen storage", "renewable energy analyst", "energy transition", "geothermal"],
     }
     best = ("other", 0)
     for family, words in families.items():
@@ -675,7 +880,7 @@ def add_company_search_fallbacks(targets: Dict[str, Any], profile: Dict[str, Any
     when an employer does not expose a clean API feed.
     """
     jobs: List[Dict[str, Any]] = []
-    query_suffix = " ".join(["careers", "geothermal", "reservoir engineer", "production analyst", "energy jobs"])
+    query_suffix = " ".join(["careers", "United States", "USA", "geothermal", "reservoir engineer", "production analyst", "energy jobs"])
     for item in targets.get("company_search_fallbacks", []):
         name = item.get("name") or "Target company"
         url = item.get("url") or ""
@@ -684,7 +889,7 @@ def add_company_search_fallbacks(targets: Dict[str, Any], profile: Dict[str, Any
             "id": stable_id("company-watch", name, search_url),
             "title": f"Company career page watch: {name}",
             "company": name,
-            "location": "Company career page",
+            "location": "United States company career page",
             "source": "Company Watchlist",
             "url": search_url,
             "apply_url": search_url,
@@ -758,20 +963,31 @@ def sample_jobs() -> List[Dict[str, Any]]:
     ]
 
 
+
 def process_jobs(fetched: Iterable[Dict[str, Any]], profile: Dict[str, Any], include_watchlist: bool = False) -> List[Dict[str, Any]]:
     processed: List[Dict[str, Any]] = []
-    minimum_fit = int(profile.get("minimum_fit_score", 38))
+    minimum_fit = int(profile.get("minimum_fit_score", 62))
+    strict_cv = bool(profile.get("strict_cv_matching", True))
     for job in dedupe(fetched):
         if is_excluded_job(job, profile):
             continue
         if not is_recent_job(job, profile):
+            continue
+        if not is_us_based_job(job, profile):
+            continue
+        if strict_cv and not job.get("is_watchlist_item") and not passes_cv_relevance_gate(job, profile):
             continue
         job = ensure_job_url(job)
         if "fit_score" not in job:
             job["fit_score"] = fit_score(job, profile)
         if "role_family" not in job:
             job["role_family"] = role_family(job)
-        # Keep real postings above the threshold. Watchlist links are optional helper links.
+        signals = cv_relevance_signals(job, profile)
+        existing_reasons = job.get("match_reasons") or []
+        cv_reasons = signals.get("reasons") or []
+        if cv_reasons:
+            job["match_reasons"] = list(dict.fromkeys(existing_reasons + cv_reasons))[:12]
+        # Keep real postings above the stricter CV threshold. Watchlist links are optional helper links.
         if job.get("is_watchlist_item") or job.get("fit_score", 0) >= minimum_fit:
             processed.append(job)
     return processed
@@ -792,7 +1008,7 @@ def write_watchlist_for_ui(targets: Dict[str, Any]) -> None:
         if not name or name.lower() in seen:
             continue
         seen.add(name.lower())
-        url = "https://www.google.com/search?" + urlencode({"q": f"{name} careers energy jobs"})
+        url = "https://www.google.com/search?" + urlencode({"q": f"{name} careers geothermal petroleum reservoir production jobs United States"})
         companies.append({"name": name, "url": url, "focus": item.get("focus", "")})
     WATCHLIST_PATH.write_text(json.dumps(companies, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -835,9 +1051,12 @@ def main() -> None:
             "source_errors": stats.errors[-20:],
             "target_start_date": profile.get("target_start_date"),
             "employment_type": profile.get("employment_type", "full-time"),
-            "minimum_fit_score": profile.get("minimum_fit_score", 38),
+            "minimum_fit_score": profile.get("minimum_fit_score", 62),
+            "strict_cv_matching": profile.get("strict_cv_matching", True),
+            "cv_profile_summary": profile.get("cv_profile_summary", ""),
             "min_posted_date": profile.get("min_posted_date"),
             "max_job_age_days": profile.get("max_job_age_days", 120),
+            "country_scope": "United States only" if profile.get("us_only", True) else "Not restricted",
         },
         "jobs": jobs,
     }

@@ -1,16 +1,80 @@
 const PROFILE_KEYWORDS = [
-  "full-time", "early career", "new graduate", "geothermal", "EGS", "enhanced geothermal",
-  "reservoir engineering", "production analysis", "production optimization", "petroleum engineering",
-  "subsurface analytics", "reservoir simulation", "Python", "machine learning", "CMG", "Petrel",
-  "KAPPA", "EOR", "carbon storage", "CCS", "CCUS", "hydrogen", "renewable energy"
+  "geothermal", "EGS", "enhanced geothermal", "hydrothermal", "reservoir engineering",
+  "reservoir simulation", "reservoir modeling", "production engineering", "production analysis",
+  "production optimization", "well performance", "petroleum engineering", "oil and gas",
+  "subsurface", "well testing", "pressure transient analysis", "CMG", "Petrel", "tNavigator",
+  "KAPPA", "Eclipse", "Python", "MATLAB", "Tableau", "machine learning", "data analytics",
+  "EOR", "conformance control", "core flooding", "HPHT", "carbon storage", "CCS", "CCUS",
+  "CO2 storage", "hydrogen storage", "renewable energy analyst"
+];
+
+const CV_CORE_PATTERNS = [
+  /\bgeothermal\b/i, /\bEGS\b/i, /enhanced geothermal/i, /hydrothermal/i,
+  /\bpetroleum\b/i, /oil and gas/i, /upstream/i, /\breservoir\b/i, /reservoir simulation/i,
+  /reservoir modeling/i, /\bsubsurface\b/i, /production engineering/i, /production analysis/i,
+  /production optimization/i, /production surveillance/i, /well performance/i, /well testing/i,
+  /pressure transient/i, /\bEOR\b/i, /enhanced oil recovery/i, /conformance control/i,
+  /polymer flooding/i, /core flooding/i, /\bHPHT\b/i, /carbon storage/i, /carbon sequestration/i,
+  /\bCCS\b/i, /\bCCUS\b/i, /CO2 storage/i, /underground storage/i, /hydrogen storage/i,
+  /natural gas/i, /digital oilfield/i
+];
+
+const CV_RELEVANT_TITLE_PATTERNS = [
+  /\breservoir (engineer|analyst|modeler|modeller|simulation engineer)\b/i,
+  /\bgeothermal (reservoir engineer|engineer|analyst|data analyst|data scientist|resource engineer|production engineer|subsurface engineer)\b/i,
+  /\bpetroleum (engineer|data analyst|reservoir engineer|production engineer)\b/i,
+  /\bproduction (engineer|analyst|data analyst|optimization engineer|surveillance engineer)\b/i,
+  /\bsubsurface (engineer|analyst|data analyst|data scientist)\b/i,
+  /\bwell (testing engineer|test engineer|performance analyst|performance engineer)\b/i,
+  /\bpressure transient\b/i,
+  /\bfield development engineer\b/i,
+  /\basset development engineer\b/i,
+  /\bEOR (engineer|specialist)\b/i,
+  /\bcarbon storage (reservoir engineer|engineer|analyst)\b/i,
+  /\bCCUS? (reservoir engineer|engineer|analyst)\b/i,
+  /\bCO2 storage (reservoir engineer|engineer|analyst)\b/i,
+  /\bunderground hydrogen storage\b/i,
+  /\bresearch (engineer|scientist).*(geothermal|reservoir|petroleum|subsurface|carbon storage|CCUS|hydrogen storage)\b/i,
+  /\benergy data (analyst|scientist).*(oil|gas|geothermal|reservoir|subsurface|carbon|CCUS)\b/i
+];
+
+const IRRELEVANT_TITLE_PATTERNS = [
+  /\bembedded software engineer\b/i,
+  /\b(senior|staff|principal|lead)?\s*software engineer\b/i,
+  /\bsoftware validation engineer\b/i,
+  /\bsoftware (developer|tester|qa|quality assurance)\b/i,
+  /\b(front[- ]?end|backend|back[- ]?end|full[- ]?stack) engineer\b/i,
+  /\b(devops|cloud|platform|site reliability|sre) engineer\b/i,
+  /\bIT operations( generalist)?\b/i,
+  /\b(help desk|network administrator|systems administrator)\b/i,
+  /\bcivil engineer\b/i,
+  /\bstructural engineer\b/i,
+  /\belectrical systems architect\b/i,
+  /\belectrical engineer\b/i,
+  /\bsystems design engineer\b/i,
+  /\bsystems architect\b/i,
+  /\bfactor systems modeling\b/i,
+  /\bbattery technician\b/i,
+  /\bbattery (manufacturing|cell|pack)\b/i,
+  /\bchemical operator\b/i,
+  /\b(process|plant|field|lease|production) operator\b/i,
+  /\bmaintenance technician\b/i,
+  /\bmechanic\b/i,
+  /\bpurchasing manager\b/i,
+  /\bprocurement manager\b/i,
+  /\bsupply chain manager\b/i,
+  /\bsourcing manager\b/i,
+  /\bbuyer\b/i,
+  /\blead analytics engineer\b/i,
+  /\banalytics engineer\b/i
 ];
 
 const ROLE_KEYWORDS = {
-  geothermal: ["geothermal", "egs", "enhanced geothermal", "subsurface", "hydrothermal", "reservoir engineer"],
-  petroleum: ["petroleum", "reservoir", "reservoir simulation", "well testing", "eor", "subsurface"],
-  production: ["production engineer", "production analyst", "operations", "facilities", "gas", "field engineer"],
-  data: ["data", "analytics", "machine learning", "python", "sql", "tableau", "power bi", "digital"],
-  renewable: ["renewable", "energy transition", "carbon storage", "ccs", "hydrogen", "solar", "wind", "battery"]
+  geothermal: ["geothermal", "egs", "enhanced geothermal", "hydrothermal", "superhot geothermal"],
+  petroleum: ["petroleum", "reservoir", "reservoir simulation", "well testing", "pressure transient", "eor", "subsurface", "oil and gas"],
+  production: ["production engineer", "production analyst", "production data analyst", "production optimization", "production surveillance", "well performance"],
+  data: ["subsurface data", "petroleum data", "geothermal data", "reservoir data", "production data", "python", "machine learning", "tableau"],
+  renewable: ["carbon storage", "ccs", "ccus", "co2 storage", "hydrogen storage", "renewable energy analyst", "energy transition"]
 };
 
 const TARGET_COMPANIES = [
@@ -57,13 +121,64 @@ const isStalePosting = (job) => {
 };
 const normalize = (s = "") => s.toString().toLowerCase();
 
+function regexHit(patterns, text) {
+  return patterns.some((pattern) => pattern.test(text || ""));
+}
+
+function passesCvGate(job) {
+  if (isWatchlistItem(job)) return true;
+  const title = normalize(job.title || "");
+  const text = normalize(`${job.title || ""} ${job.company || ""} ${job.description || ""} ${job.location || ""} ${job.query || ""}`);
+  if (regexHit(IRRELEVANT_TITLE_PATTERNS, title)) return false;
+  const hasCore = regexHit(CV_CORE_PATTERNS, text);
+  const hasRelevantTitle = regexHit(CV_RELEVANT_TITLE_PATTERNS, `${title} ${normalize(job.query || "")}`);
+  const genericTech = /\b(software|embedded|firmware|validation|analytics engineer|it|cloud|platform|systems design|systems architect)\b/i.test(title);
+  if (genericTech && !/(geothermal|reservoir|petroleum|oil and gas|subsurface|production optimization|carbon storage|ccus|hydrogen storage)/i.test(text)) return false;
+  const genericEnergyButNotCv = /\b(battery|manufacturing|purchasing|procurement|supply chain|technician|operator|civil|electrical)\b/i.test(title);
+  if (genericEnergyButNotCv && !hasRelevantTitle) return false;
+  if (hasRelevantTitle) return true;
+  if (hasCore && /\b(engineer|analyst|scientist|modeler|modeller|researcher|specialist)\b/i.test(title)) return true;
+  if (hasCore && /(python|machine learning|data analyst|data scientist|analytics|simulation|cmg|petrel|kappa|eclipse|tnavigator|matlab|tableau|pressure transient|well test|decline curve)/i.test(text)) return true;
+  if (/\b(energy data analyst|energy data scientist|renewable energy analyst)\b/i.test(title) && /(geothermal|oil and gas|petroleum|reservoir|subsurface|carbon storage|ccus|hydrogen storage)/i.test(text)) return true;
+  return false;
+}
+
+
+const NON_US_LOCATION_PATTERNS = [
+  /\bcanada\b/i, /\bcalgary\b/i, /\bedmonton\b/i, /\balberta\b/i, /\bvancouver\b/i,
+  /\bbritish columbia\b/i, /\btoronto\b/i, /\bontario\b/i, /\bottawa\b/i, /\bmontreal\b/i,
+  /\bqu[eé]bec\b/i, /\bsaskatchewan\b/i, /\bmanitoba\b/i, /\bwinnipeg\b/i,
+  /\bnova scotia\b/i, /\bnew brunswick\b/i, /\bnewfoundland\b/i, /\blabrador\b/i,
+  /\bworldwide\b/i, /\bglobal\b/i, /\binternational\b/i, /\beurope\b/i, /\buk\b/i,
+  /\bunited kingdom\b/i, /\bgermany\b/i, /\bfrance\b/i, /\bnetherlands\b/i,
+  /\baustralia\b/i, /\bindia\b/i, /\bbrazil\b/i, /\bmexico\b/i
+];
+
+const US_LOCATION_PATTERNS = [
+  /\b(united states|usa|u\.s\.|u\.s\.a\.|us only|usa only|remote[- ]?us|remote[- ]?usa)\b/i,
+  /\b(alabama|alaska|arizona|arkansas|california|colorado|connecticut|delaware|florida|georgia|hawaii|idaho|illinois|indiana|iowa|kansas|kentucky|louisiana|maine|maryland|massachusetts|michigan|minnesota|mississippi|missouri|montana|nebraska|nevada|new hampshire|new jersey|new mexico|new york|north carolina|north dakota|ohio|oklahoma|oregon|pennsylvania|rhode island|south carolina|south dakota|tennessee|texas|utah|vermont|virginia|washington|west virginia|wisconsin|wyoming|district of columbia)\b/i,
+  /\b(houston|midland|dallas|austin|tulsa|oklahoma city|denver|bakersfield|reno|salt lake city|golden|oakland|pittsburgh|lafayette|anchorage|imperial valley|salton sea|the geysers|milford)\b/i,
+  /(?:,|\b)\s*(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)\b/
+];
+
+function isUsBasedJob(job) {
+  if (isWatchlistItem(job)) return true;
+  const locationText = `${job.location || ""} ${job.title || ""} ${job.company || ""} ${job.query || ""}`;
+  const fullText = `${locationText} ${(job.description || "").slice(0, 1200)}`;
+  if (NON_US_LOCATION_PATTERNS.some((pattern) => pattern.test(fullText))) return false;
+  if (US_LOCATION_PATTERNS.some((pattern) => pattern.test(locationText))) return true;
+  if (/^(USAJOBS|Adzuna)/i.test(job.source || "")) return true;
+  if (/^\s*(remote|remote \/ hybrid|hybrid|not listed|location not provided)\s*$/i.test(job.location || "")) return true;
+  return false;
+}
+
 function summarize(text, max = 260) {
   const clean = (text || "No description provided by source.").replace(/\s+/g, " ").trim();
   return clean.length > max ? `${clean.slice(0, max).trim()}…` : clean;
 }
 
 function fallbackSearchUrl(job) {
-  const query = encodeURIComponent(`${job.title || ""} ${job.company || ""} ${job.location || ""} job posting`.trim());
+  const query = encodeURIComponent(`${job.title || ""} ${job.company || ""} ${job.location || ""} job posting United States`.trim());
   return `https://www.google.com/search?q=${query}`;
 }
 
@@ -104,14 +219,20 @@ function matchReasons(job) {
 }
 
 function fitScore(job) {
-  let score = 30;
+  if (!passesCvGate(job)) return 0;
+  let score = 20;
   const reasons = matchReasons(job);
-  score += reasons.length * 7;
   const text = normalize(`${job.title} ${job.description}`);
-  if (/senior|principal|manager|director|lead/i.test(text)) score -= 14;
-  if (/new graduate|new grad|graduate engineer|entry|early career|associate|junior|research engineer|phd|full[- ]time|permanent/i.test(text)) score += 12;
-  if (/\bintern\b|\binternship\b|\bco[- ]?op\b|student trainee/i.test(text)) score -= 35;
-  if (/geothermal|reservoir|production|subsurface|petroleum/i.test(text)) score += 10;
+  const title = normalize(job.title || "");
+  score += reasons.length * 5;
+  if (regexHit(CV_RELEVANT_TITLE_PATTERNS, title)) score += 25;
+  if (regexHit(CV_CORE_PATTERNS, text)) score += 18;
+  if (/python|machine learning|data scientist|data analyst|analytics|simulation|cmg|petrel|kappa|eclipse|tnavigator|matlab|tableau|pressure transient|well test|decline curve/i.test(text)) score += 12;
+  if (/\b(renewable energy analyst|energy transition analyst)\b/i.test(title) && /geothermal|reservoir|subsurface|petroleum|oil and gas|carbon storage|ccs|ccus|hydrogen storage/i.test(text)) score += 18;
+  if (/new graduate|new grad|graduate engineer|entry|early career|associate|junior|research engineer|phd|full[- ]time|permanent/i.test(text)) score += 10;
+  if (/\b(senior|principal|manager|director|lead|staff)\b/i.test(title) && !/junior|associate|early career|new graduate|graduate/i.test(title)) score -= 14;
+  if (/\bintern\b|\binternship\b|\bco[- ]?op\b|student trainee/i.test(text)) score -= 50;
+  if (regexHit(IRRELEVANT_TITLE_PATTERNS, title)) score -= 100;
   const age = daysAgo(job.date_posted);
   if (age <= 7) score += 8;
   else if (age <= 30) score += 3;
@@ -145,11 +266,11 @@ async function loadJobs() {
     if (!response.ok) throw new Error("jobs.json missing");
     const payload = await response.json();
     metadata = payload.metadata || {};
-    allJobs = (payload.jobs || []).map(enrich).filter((job) => !isStalePosting(job));
+    allJobs = (payload.jobs || []).map(enrich).filter((job) => !isStalePosting(job)).filter(isUsBasedJob).filter(passesCvGate);
   } catch (error) {
     console.warn("Using built-in sample jobs because data/jobs.json could not be loaded.", error);
     metadata = { last_updated: new Date().toISOString(), mode: "sample" };
-    allJobs = sampleJobs().map(enrich).filter((job) => !isStalePosting(job));
+    allJobs = sampleJobs().map(enrich).filter((job) => !isStalePosting(job)).filter(isUsBasedJob).filter(passesCvGate);
   }
   renderStaticContent();
   populateSources();
@@ -161,7 +282,7 @@ function renderStaticContent() {
   el("companyList").innerHTML = companyWatchlist.slice(0, 140).map((c) => `
     <li><a href="${c.url}" target="_blank" rel="noopener">${c.name}</a><small>${c.focus || c.capture_method || "Target company"}</small></li>
   `).join("");
-  el("lastUpdated").textContent = `Last updated: ${fmtDate(metadata.last_updated)}${metadata.mode === "sample" ? " (sample data)" : ""}. Showing postings from 2026 onward and within about ${MAX_JOB_AGE_DAYS} days.`;
+  el("lastUpdated").textContent = `Last updated: ${fmtDate(metadata.last_updated)}${metadata.mode === "sample" ? " (sample data)" : ""}. Showing United States-only CV-matched postings from 2026 onward and within about ${MAX_JOB_AGE_DAYS} days.`;
 }
 
 function populateSources() {
@@ -191,7 +312,7 @@ function getFilters() {
 
 function filteredJobs() {
   const f = getFilters();
-  let jobs = [...allJobs].filter((job) => !isStalePosting(job));
+  let jobs = [...allJobs].filter((job) => !isStalePosting(job)).filter(isUsBasedJob).filter(passesCvGate);
   if (f.search) {
     jobs = jobs.filter((job) => normalize(`${job.title} ${job.company} ${job.description} ${job.location} ${(job.match_reasons || []).join(" ")}`).includes(f.search));
   }

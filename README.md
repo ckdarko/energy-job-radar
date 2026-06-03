@@ -143,3 +143,33 @@ Known direct ATS feeds added:
 - `Zanskar` on Lever for Zanskar
 
 For companies that do not expose a clean public API feed, the app adds a company career-page/search fallback so the dashboard can still act as a watchlist.
+
+## United States-only filtering
+
+This version restricts matched postings to the United States. The backend filter is controlled by these settings in `config/profile.json`:
+
+```json
+"us_only": true,
+"country_scope": "United States only",
+"keep_unspecified_remote_from_target_companies": true
+```
+
+The updater removes postings that contain non-U.S. location signals such as Canada, Calgary, Alberta, Toronto, Ontario, Vancouver, British Columbia, Worldwide, Global, International, Europe, United Kingdom, Germany, Australia, India, Brazil, or Mexico. It keeps postings that clearly identify U.S. states, U.S. cities, USA/United States wording, USAJOBS results, and Adzuna results queried from the U.S. endpoint.
+
+Remote jobs are kept only when they are U.S.-based, from a U.S.-scoped source, or from a target-company feed with no non-U.S. location signal. The front-end also applies a second safety filter so old `data/jobs.json` entries from Canada do not show even before the next workflow refresh.
+
+
+## CV/resume relevance filter
+
+This version is tuned to Caleb's resume/CV and removes broad job matches that are outside petroleum/geothermal/subsurface work. The updater now requires a posting to connect to at least one core CV domain such as geothermal/EGS, petroleum engineering, reservoir engineering, production analysis/optimization, subsurface analytics, well testing, reservoir simulation, EOR/conformance control, CCUS/carbon storage, or underground hydrogen storage.
+
+It hard-excludes roles that were appearing as false positives, including embedded/software engineering roles, software validation, IT operations, generic civil/electrical roles, systems architect/design roles, chemical/process/plant/operator roles, battery technician/manufacturing roles, purchasing/procurement/supply-chain roles, and generic analytics engineer roles not tied to subsurface/energy data.
+
+Main tuning is in `config/profile.json`:
+
+- `strict_cv_matching`: turns the CV gate on/off.
+- `minimum_fit_score`: current threshold is 62.
+- `cv_core_domain_keywords`: required domain signals from the CV.
+- `cv_target_title_keywords`: preferred titles.
+- `hard_excluded_title_patterns`: roles to remove even if they mention energy.
+- `cv_relevant_title_patterns`: titles treated as strong matches.
