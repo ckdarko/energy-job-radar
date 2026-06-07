@@ -6560,3 +6560,27 @@ body.header-menu-open .cart-close {
 .homepage-video-card {
   background: linear-gradient(135deg, #fff3f8, #ffd7e5 55%, #e6005b) !important;
 }
+
+
+/* FIXED: fully remove homepage video text; keep only button */
+.homepage-video-overlay .eyebrow,
+.homepage-video-overlay h1,
+.homepage-video-overlay h2,
+.homepage-video-overlay h3,
+.homepage-video-overlay p:not(.eyebrow) {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.homepage-video-overlay {
+  justify-content: flex-end !important;
+}
+
+.homepage-video-overlay .btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+}
+
+.brand-intro-section {
+  display: none !important;
+}
