@@ -1,119 +1,741 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Energy Job Radar</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scentivity | Everything Sweet Scented</title>
+  <meta name="description" content="Scentivity is a beauty and fragrance boutique offering Victoria's Secret collection picks, Bath & Body Works collection products, and designer and luxury fragrances." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=productpage-exact-homepage-menu-working-20260609" />
 </head>
-<body>
-  <header class="hero">
-    <div class="hero__content">
-      <p class="eyebrow">Petroleum • Geothermal • Renewable Energy • Data Analytics</p>
-      <h1>Energy Job Radar</h1>
-      <p class="subtitle">A personalized job-search dashboard for petroleum, geothermal, renewable energy, reservoir/production analytics, and energy-transition roles. Designed for opportunities starting May 2027 or earlier.</p>
-      <div class="hero__actions">
-        <a class="button button--primary" href="#jobs">View jobs</a>
-        <button id="exportCsvBtn" class="button button--secondary" type="button">Export CSV</button>
-      </div>
-    </div>
-    <div class="hero__stats" aria-label="Dashboard stats">
-      <div class="stat-card"><span id="totalJobs">0</span><small>Total jobs</small></div>
-      <div class="stat-card"><span id="newJobs">0</span><small>New in 7 days</small></div>
-      <div class="stat-card"><span id="highFitJobs">0</span><small>High fit</small></div>
-    </div>
+<body id="top">
+
+  <div class="top-promo" role="banner">
+    <span>Delivery within 24 hrs</span>
+    <span>Secure Card and MoMo Payment</span>
+    <span>Great Deals Weekly</span>
+  </div>
+  <header class="site-header" id="top">
+    <a href="#top" class="brand" aria-label="Scentivity homepage" data-home-logo="true" data-home-logo="true">
+      <img src="assets/scentivity-logo-fused.png" alt="Scentivity logo" />
+    </a>
+
+    <button class="header-menu-toggle" id="headerMenuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    
+
   </header>
 
+  <div class="header-menu-panel" id="headerMenuPanel" aria-hidden="true">
+      <div class="header-menu-card">
+        <button class="header-menu-close perfume-menu-close" id="headerMenuClose" type="button" aria-label="Close menu">×</button>
+
+        <div class="menu-search-wrap">
+          <span aria-hidden="true">⌕</span>
+          <input id="menuSearchInput" type="search" placeholder="search store....." aria-label="Search Scentivity store" />
+        </div>
+
+        <nav class="nav-links perfume-style-menu" aria-label="Main navigation">
+          <a href="#products">SHOP</a>
+          <button class="nav-preorder-button" id="openPreorderButton" type="button" onclick="window.scentivityCloseHeaderMenu?.();document.getElementById('contactModal')?.classList.add('open');document.getElementById('contactModal')?.setAttribute('aria-hidden','false')">PREORDER</button>
+          <button class="nav-catalogue-button" id="openCatalogueButton" type="button" onclick="window.scentivityCloseHeaderMenu?.();document.getElementById('catalogueModal')?.classList.add('open');document.getElementById('catalogueModal')?.setAttribute('aria-hidden','false')">PRODUCT CATALOGUE</button>
+          <button class="nav-about-button" id="openAboutButton" type="button" onclick="window.scentivityCloseHeaderMenu?.();document.getElementById('aboutModal')?.classList.add('open');document.getElementById('aboutModal')?.setAttribute('aria-hidden','false')">ABOUT US</button>
+                    <button class="nav-feedback-button" id="openFeedbackButton" type="button" onclick="window.scentivityCloseHeaderMenu?.();document.getElementById('feedbackModal')?.classList.add('open');document.getElementById('feedbackModal')?.setAttribute('aria-hidden','false')">WRITE FEEDBACK</button>
+<button class="cart-nav-button" id="cartToggle" data-open-cart="true" type="button" aria-label="Open cart" onclick="window.scentivityCloseHeaderMenu?.();document.getElementById('cartOverlay')?.classList.add('visible');document.getElementById('cartOverlay')?.setAttribute('aria-hidden','false');document.getElementById('cartDrawer')?.classList.add('open');document.getElementById('cartDrawer')?.setAttribute('aria-hidden','false')">CART <span id="cartCount" data-cart-count>0</span></button>
+        </nav>
+      </div>
+    </div>
+
+
   <main>
-    <section class="panel profile-panel">
-      <div>
-        <h2>Profile match priorities</h2>
-        <p>The scoring model favors roles aligned with PhD-level petroleum engineering, geothermal/EGS, conformance control, reservoir simulation, production analysis, and Python/data analytics.</p>
-      </div>
-      <div id="keywordCloud" class="keyword-cloud" aria-label="Profile keywords"></div>
-    </section>
 
-    <section class="panel controls" aria-label="Search filters">
-      <div class="control-group control-group--wide">
-        <label for="searchInput">Search title, company, description, or skill</label>
-        <input id="searchInput" type="search" placeholder="Example: geothermal reservoir engineer, production analyst, CMG, Python" />
-      </div>
-      <div class="control-group">
-        <label for="roleFilter">Role family</label>
-        <select id="roleFilter">
-          <option value="all">All role families</option>
-          <option value="geothermal">Geothermal / EGS</option>
-          <option value="petroleum">Petroleum / Reservoir</option>
-          <option value="production">Production / Operations</option>
-          <option value="data">Data / ML / Analytics</option>
-          <option value="renewable">Renewable / Energy transition</option>
-        </select>
-      </div>
-      <div class="control-group">
-        <label for="locationFilter">Location</label>
-        <input id="locationFilter" type="text" placeholder="United States, Texas, California, remote" />
-      </div>
-      <div class="control-group">
-        <label for="sourceFilter">Source</label>
-        <select id="sourceFilter">
-          <option value="all">All sources</option>
-        </select>
-      </div>
-      <div class="control-group">
-        <label for="sortFilter">Sort by</label>
-        <select id="sortFilter">
-          <option value="fit">Best fit</option>
-          <option value="date">Newest</option>
-          <option value="deadline">Deadline soonest</option>
-          <option value="company">Company A-Z</option>
-        </select>
-      </div>
-      <div class="control-row">
-        <label class="checkbox"><input id="remoteOnly" type="checkbox" /> Remote/hybrid only</label>
-        <label class="checkbox"><input id="newOnly" type="checkbox" /> New in 7 days</label>
-        <label class="checkbox"><input id="savedOnly" type="checkbox" /> Saved only</label>
-        <label class="checkbox"><input id="hideExpired" type="checkbox" checked /> Hide expired</label>
-        <span class="checkbox recency-note">Auto-hides stale 2025 postings</span>
+    <section class="section hero-highlights-section" aria-label="Scentivity highlights">
+      <div class="trust-row floating-trust-row hero-highlights-marquee" aria-label="Business highlights">
+        <div class="hero-highlights-track">
+              <span>Everything Sweet Scented</span>
+              <span>Victoria’s Secret</span>
+              <span>Bath & Body Works</span>
+              <span>Luxury Fragrances</span>
+              <span>Pickup</span>
+              <span>Delivery</span>
+              <span>Secure checkout options</span>
+              <span>Everything Sweet Scented</span>
+              <span>Victoria’s Secret</span>
+              <span>Bath & Body Works</span>
+              <span>Luxury Fragrances</span>
+              <span>Pickup</span>
+              <span>Delivery</span>
+              <span>Secure checkout options</span>
+        </div>
       </div>
     </section>
 
-    <section id="jobs" class="jobs-layout">
-      <aside class="panel side-panel company-panel">
-        <div class="company-panel__header">
-          <h2>Target companies</h2>
-          <p>Use this list for networking and manual checks when APIs miss employer career-page postings.</p>
+    <section class="section homepage-video-section" id="homepageVideoSection" aria-label="Scentivity homepage video">
+      <div class="homepage-video-card">
+        <video id="homepageVideo" class="homepage-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/scentivity-video-poster.svg">
+          <source src="assets/scentivity-homepage-video.mp4" type="video/mp4" />
+        </video>
+        <div class="homepage-video-fallback" aria-hidden="true">
+          <div class="video-fallback-bottle"><span>S</span></div>
         </div>
-        <div class="company-tools">
-          <label for="companySearch">Search target companies</label>
-          <input id="companySearch" type="search" placeholder="Example: Fervo, Chevron, Ormat, Houston" />
-          <p id="companyCount" class="company-count">Loading companies…</p>
+        <div class="homepage-video-overlay">
+          <a class="btn primary" href="#products">Shop the collection</a>
         </div>
-        <div class="company-scroll" tabindex="0" aria-label="Scrollable target company list">
-          <ul id="companyList" class="company-list"></ul>
+      </div>
+    </section>
+
+
+    
+
+    
+
+<section class="section homepage-showcase" id="featured-products" aria-label="Customer favorites, recently bought picks, and coming soon products">
+      <div class="section-heading split showcase-heading">
+        <div>
+          <p class="eyebrow">Customer favorites</p>
+          <h2>Available favorites and coming-soon scents.</h2>
         </div>
-      </aside>
-      <section class="panel job-panel">
-        <div class="section-heading">
-          <div>
-            <h2>Matched job postings</h2>
-            <p id="lastUpdated">Last updated: loading…</p>
+        <div class="showcase-controls" aria-label="Slideshow controls">
+          <button class="showcase-arrow" id="showcasePrev" type="button" aria-label="Previous product">‹</button>
+          <button class="showcase-arrow" id="showcaseNext" type="button" aria-label="Next product">›</button>
+        </div>
+      </div>
+      <div class="showcase-window">
+        <div class="showcase-track" id="homepageProductSlides">
+          <article class="showcase-slide active simplified-showcase-slide product-click-card" data-product-key="victoria-s-secret-pure-wonder-fragrance-mist-0" tabindex="0" aria-label="View details for Victoria&#x27;s Secret Pure Wonder Fragrance Mist">
+            <div class="showcase-image-wrap">
+              <img src="assets/products/citrus-bloom.svg" alt="Victoria&#x27;s Secret Pure Wonder Fragrance Mist" loading="lazy" onerror="this.onerror=null;this.src='assets/scentivity-logo-fused.png';" />
+              <span class="showcase-badge available">Available now</span>
+            </div>
+            <div class="showcase-copy">
+              <p class="eyebrow">Available now • 1 of 1</p>
+              <h3>Victoria&#x27;s Secret Pure Wonder Fragrance Mist</h3>
+              <div class="compact-product-meta showcase-quick-meta">
+                <span class="star-rating-symbol">★</span>
+                <span>4.9</span>
+                <span>| 20 reviews</span>
+                <span>| 8 bought</span>
+              </div>
+              <div class="showcase-bottom">
+                <strong>GH₵250</strong>
+                <button class="btn primary add-to-cart" type="button" data-product-key="victoria-s-secret-pure-wonder-fragrance-mist-0">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="showcase-dots" id="homepageProductDots" aria-label="Slideshow pagination"></div>
+    </section>
+
+    <section class="section deal-of-week-section" id="deal-of-week">
+      <div class="hero-card hero-deal-card" id="dealOfWeekCard" aria-label="Deal of the Week">
+        <div class="deal-week-visual">
+          <span class="deal-tag">Deal of the Week</span>
+          <div class="deal-bottle-mini">
+            <div class="bottle-cap"></div>
+            <div class="bottle-neck"></div>
+            <div class="bottle-body">
+              <img class="bottle-logo" src="assets/scentivity-logo-fused.png" alt="Scentivity business logo" />
+            </div>
           </div>
-          <p id="resultCount" class="result-count">0 results</p>
         </div>
-        <div id="jobsList" class="jobs-list"></div>
-        <div id="emptyState" class="empty-state" hidden>
-          <h3>No jobs match these filters.</h3>
-          <p>Try removing a filter, checking broader locations, or adding more search terms in <code>config/profile.json</code>.</p>
+        <div class="deal-week-content">
+          <p class="eyebrow">Limited offer</p>
+          <h2>Bundle your favorites and save.</h2>
+          <p>Fresh picks. Sweet savings.</p>
+          <a class="btn primary" href="#comboDeals">Shop deal</a>
         </div>
-      </section>
+      </div>
+    </section>
+
+<section class="section products-section" id="products">
+
+
+      
+
+
+<section class="section quick-shop-controls" id="quickShop" aria-label="Search products and open product catalogue">
+      <div class="filter-panel quick-search-only" aria-label="Product search">
+        <div>
+          <span>Search</span>
+          <input class="product-search" id="productSearch" type="search" placeholder="Search perfume, mist, lotion, candle..." />
+        </div>
+        <div class="quick-action-buttons">
+          <button class="btn primary" id="openCatalogueButtonQuick" type="button" onclick="document.getElementById('catalogueModal')?.classList.add('open');document.getElementById('catalogueModal')?.setAttribute('aria-hidden','false')">Product Catalogue</button>
+          <button class="btn ghost" id="openShippingButtonQuick" type="button" onclick="document.getElementById('shippingModal')?.classList.add('open');document.getElementById('shippingModal')?.setAttribute('aria-hidden','false')">Shipping Countries</button>
+        </div>
+      </div>
+    </section>
+
+      <div class="mobile-shop-bar" aria-label="Mobile shop search">
+        <button type="button" data-scroll-search="Victoria">Victoria’s Secret</button>
+        <button type="button" data-scroll-search="Bath">Bath & Body Works</button>
+        <button type="button" data-scroll-search="Luxury">Luxury</button>
+      </div>
+<div class="product-grid" id="productGrid" aria-live="polite"></div>
+    </section>
+
+    
+    <section class="section combo-before-order-section hidden" aria-label="Combo deals before how to order">
+      <div class="combo-deals" id="comboDeals" aria-label="Scentivity combo deals">
+        <div class="combo-heading">
+          <div>
+            <p class="eyebrow">Combo deals</p>
+            <h3>Save more with curated scent bundles.</h3>
+            <p>Pick a discounted combo, add it to cart, and checkout the same way as regular products.</p>
+          </div>
+        </div>
+        <div class="combo-grid" id="comboGrid" aria-live="polite"></div>
+
+        <div class="bundle-builder" id="bundleBuilder" aria-label="Build your own Scentivity bundle">
+          <div class="bundle-builder-heading">
+            <div>
+              <p class="eyebrow">Build your own bundle</p>
+              <h3>Create your own discounted combo.</h3>
+              <p>Select at least two available products, then add your custom bundle to cart. The discount is applied automatically.</p>
+            </div>
+            <div class="bundle-discount-note">
+              <strong>Bundle discount</strong>
+              <span>2 items: 5% off • 3+ items: 10% off</span>
+            </div>
+          </div>
+          <div class="bundle-builder-grid" id="bundleBuilderGrid" aria-live="polite"></div>
+          <div class="bundle-builder-summary" id="bundleBuilderSummary">
+            <span>Select 2 or more products to build a bundle.</span>
+            <button class="btn primary" id="addBuiltBundleToCart" type="button" disabled>Add Built Bundle to Cart</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+<section class="section order order-slider-section" id="order">
+      <div class="section-heading split">
+        <div>
+          <p class="eyebrow">How to order</p>
+          <h2>Simple steps to get your scent.</h2>
+        </div>
+        <div class="order-controls" aria-label="How to order slideshow controls">
+          <button class="order-arrow" id="orderPrev" type="button" aria-label="Previous step">‹</button>
+          <button class="order-arrow" id="orderNext" type="button" aria-label="Next step">›</button>
+        </div>
+      </div>
+      <div class="order-slider" aria-live="polite">
+        <div class="order-track" id="orderSlides">
+          <article>
+            <span>1</span>
+            <h3>Choose a scent</h3>
+            <p>Pick a product, combo, or custom bundle.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>Add to cart</h3>
+            <p>Review your items and total before checkout.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Choose payment</h3>
+            <p>Use Card, MoMo, or Pay on pickup.</p>
+          </article>
+          <article>
+            <span>4</span>
+            <h3>Receive order</h3>
+            <p>Scentivity prepares pickup or delivery.</p>
+          </article>
+        </div>
+      </div>
+      <div class="order-dots" id="orderDots" aria-label="How to order pagination"></div>
+    </section>
+
+
+    
+    
+
+
+<section class="section testimonials" id="testimonials">
+      <div class="section-heading split">
+        <div>
+          <p class="eyebrow">Customer Love</p>
+          <h2>Share your Scentivity experience.</h2>
+          
+        </div>
+        <div class="testimonial-controls" aria-label="Review slideshow controls">
+          <button class="testimonial-arrow" id="testimonialPrev" type="button" aria-label="Previous review">‹</button>
+          <button class="testimonial-arrow" id="testimonialNext" type="button" aria-label="Next review">›</button>
+        </div>
+      </div>
+
+      <div class="testimonial-slider" aria-live="polite">
+        <div class="testimonial-track" id="testimonialSlides"></div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots" aria-label="Review slideshow pagination"></div>
+
+      
+
     </section>
   </main>
 
-  <footer>
-    <p>Energy Job Radar updates automatically when the GitHub Actions workflow runs. Saved jobs and statuses are stored locally in your browser.</p>
+  
+  <div class="modal-overlay" id="feedbackModal" aria-hidden="true">
+    <div class="feedback-modal" role="dialog" aria-modal="true" aria-labelledby="feedbackModalTitle">
+      <button class="modal-close" id="closeFeedbackModal" type="button" aria-label="Close feedback form">×</button>
+      <div class="modal-heading">
+        <p class="eyebrow">Write feedback</p>
+        <h2 id="feedbackModalTitle">Tell us what you think.</h2>
+      </div>
+      <form class="feedback-form" name="customer-feedback" method="POST" action="/.netlify/functions/submit-feedback" data-netlify="true" netlify-honeypot="bot-field" id="customerFeedbackForm">
+        <input type="hidden" name="form-name" value="customer-feedback" />
+        <p class="hidden">
+          <label>Do not fill this out if you are human: <input name="bot-field" /></label>
+        </p>
+<label>
+          Name
+          <input type="text" name="name" placeholder="Your name" required />
+        </label>
+        <label>
+          Rating
+          <select name="rating" required>
+            <option value="5">★★★★★ 5 stars</option>
+            <option value="4">★★★★ 4 stars</option>
+            <option value="3">★★★ 3 stars</option>
+            <option value="2">★★ 2 stars</option>
+            <option value="1">★ 1 star</option>
+          </select>
+        </label>
+        <fieldset class="feedback-products-field">
+          <legend>Products purchased</legend>
+          <button class="feedback-products-toggle" id="toggleFeedbackProducts" type="button" aria-expanded="false" aria-controls="feedbackProductChoices">
+            <span>Select products purchased</span>
+            <strong id="feedbackProductCount">0 selected</strong>
+          </button>
+          <div class="feedback-product-choices" id="feedbackProductChoices" aria-live="polite" hidden></div>
+          <label class="feedback-other-product">
+            Other product / combo not listed
+            <input type="text" name="productsPurchasedOther" placeholder="Type product or combo name if not listed" />
+          </label>
+          <input type="hidden" name="productsPurchased" id="feedbackProductsPurchased" required />
+        </fieldset>
+        <label>
+          Feedback
+          <textarea name="message" rows="4" placeholder="Write your feedback here..." required></textarea>
+        </label>
+        <button class="btn primary" type="submit">Submit Feedback</button>
+      </form>
+    </div>
+  </div>
+
+<div class="modal-overlay" id="aboutModal" aria-hidden="true">
+    <div class="about-modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+      <button class="modal-close" id="closeAboutModal" type="button" aria-label="Close about Scentivity" onclick="document.getElementById('aboutModal')?.classList.remove('open');document.getElementById('aboutModal')?.setAttribute('aria-hidden','true')">×</button>
+      <div class="about-modal-logo">
+        <img src="assets/scentivity-logo-fused.png" alt="Scentivity business logo" />
+      </div>
+      <p class="eyebrow">About Scentivity</p>
+      <h2 id="aboutModalTitle">Where beauty meets memory.</h2>
+      <p>Scentivity helps customers discover sweet, elegant fragrances and body-care products that match their mood, lifestyle, and special occasions. From everyday freshness to memorable gifts, every item is selected to feel beautiful, personal, and unforgettable.</p>
+      <div class="check-list">
+        <p>✓ Perfumes, fragrance mists, body care essentials, home fragrances, candles, room sprays, and car fragrances</p>
+        <p>✓ Product requests, WhatsApp support, and Instagram updates</p>
+        <p>✓ Easy cart checkout with pickup, delivery, combo discounts, card/MoMo payment, and pay on pickup</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay contact-modal-overlay" id="contactModal" aria-hidden="true">
+    <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+      <button class="modal-close" id="closeContactModal" type="button" aria-label="Close contact and preorder" onclick="document.getElementById('contactModal')?.classList.remove('open');document.getElementById('contactModal')?.setAttribute('aria-hidden','true')">×</button>
+      <div class="contact-modal-content">
+        <div class="contact-copy">
+        <p class="eyebrow">Contact</p>
+        <h2>Ready to smell unforgettable?</h2>
+        <p>Need help choosing a fragrance, arranging pickup, confirming delivery, or asking about availability? Contact Scentivity by WhatsApp, email, or Instagram.</p>
+        <div class="contact-methods" aria-label="Scentivity contact details">
+          <a class="contact-card highlight" href="https://wa.me/233534584470?text=Hello%20Scentivity%2C%20I%20would%20like%20to%20send%20a%20product%20request." target="_blank" rel="noreferrer">
+            <span class="contact-icon whatsapp-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" focusable="false" role="img">
+                <path d="M16.04 3.2A12.72 12.72 0 0 0 5.21 22.6L3.6 28.8l6.35-1.66a12.69 12.69 0 0 0 6.09 1.55h.01A12.75 12.75 0 0 0 16.04 3.2Zm0 23.3h-.01a10.47 10.47 0 0 1-5.34-1.46l-.38-.23-3.76.99 1-3.67-.25-.38A10.52 10.52 0 1 1 16.04 26.5Zm5.77-7.88c-.32-.16-1.87-.92-2.16-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1.01 1.24-.18.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.58-.95-.85-1.59-1.9-1.78-2.22-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.72-.98-2.36-.26-.62-.52-.54-.71-.55h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.07 1.3 3.28c.16.21 2.24 3.42 5.43 4.79.76.33 1.35.52 1.81.67.76.24 1.46.21 2.01.13.61-.09 1.87-.76 2.13-1.5.26-.74.26-1.37.18-1.5-.08-.13-.29-.21-.61-.37Z"/>
+              </svg>
+            </span>
+            <span><strong>WhatsApp orders</strong><small>053 458 4470</small></span>
+          </a>
+          <a class="contact-card" href="#">
+            <span class="contact-icon">✉</span>
+            <span><strong>Email</strong><small>scentivitygh@gmail.com</small></span>
+          </a>
+          <a class="contact-card" href="https://instagram.com/scentivity" target="_blank" rel="noreferrer">
+            <span class="contact-icon">◎</span>
+            <span><strong>Instagram</strong><small>@scentivity</small></span>
+          </a>
+        </div>
+        <p class="contact-note">For cart orders, use the checkout panel. For unavailable products or special fragrance requests, use the preorder form.</p>
+      </div>
+      <div class="preorder-card" id="preorder" aria-label="Preorder and fragrance request">
+        <form id="emailRequestForm" name="preorder-request" class="contact-form preorder-form">
+          <p class="eyebrow">Preorder</p>
+          <h3>Missing your favorite fragrance?</h3>
+          <p class="form-intro">Let us know and we’ll notify you the moment it becomes available.</p>
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Your name" required />
+          </label>
+          <label>
+            Fragrance request
+            <textarea name="message" rows="5" placeholder="Tell us the product name, brand, size, quantity, pickup/delivery preference, address if delivery is needed, or any question you have." required></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send Request on WhatsApp</button>
+          <p class="cart-small-note preorder-whatsapp-note">This request opens WhatsApp so Scentivity can respond faster.</p>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay catalogue-modal-overlay" id="catalogueModal" aria-hidden="true">
+    <div class="catalogue-modal" role="dialog" aria-modal="true" aria-labelledby="catalogueModalTitle">
+      <button class="modal-close" id="closeCatalogueModal" type="button" aria-label="Close product catalogue" onclick="document.getElementById('catalogueModal')?.classList.remove('open');document.getElementById('catalogueModal')?.setAttribute('aria-hidden','true')">×</button>
+      <p class="eyebrow">Product Catalogue</p>
+      <h2 id="catalogueModalTitle">Browse Scentivity by collection and fragrance type.</h2>
+      <p class="catalogue-intro">Use the catalogue buttons to filter products. Combos opens the discount bundle section.</p>
+      <div class="catalogue-filter-panel">
+        <div>
+          <span>PRODUCT CATALOGUE</span>
+          <div class="filter-controls catalogue-category-controls" id="mainCategoryFilters"></div>
+        </div>
+        <div>
+          <span>FRAGRANCE / CARE TYPE</span>
+          <div class="filter-controls subcategory-controls catalogue-subcategory-controls" id="subCategoryFilters"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay shipping-modal-overlay" id="shippingModal" aria-hidden="true">
+    <div class="shipping-modal" role="dialog" aria-modal="true" aria-labelledby="shippingModalTitle">
+      <button class="modal-close" id="closeShippingModal" type="button" aria-label="Close shipping countries" onclick="document.getElementById('shippingModal')?.classList.remove('open');document.getElementById('shippingModal')?.setAttribute('aria-hidden','true')">×</button>
+      <p class="eyebrow">Shipping Countries</p>
+      <h2 id="shippingModalTitle">Where Scentivity can currently ship.</h2>
+      <p class="shipping-intro">For now, online delivery checkout is available only within Ghana. For other countries, leave your details through Contact and we will notify you when shipping becomes available.</p>
+      <div class="shipping-country-list">
+        <article class="available">
+          <strong>Ghana</strong>
+          <span>Available now</span>
+          <p>Delivery is currently available in Ghana. Delivery fee will be determined after checkout based on your location.</p>
+        </article>
+        <article>
+          <strong>Nigeria</strong>
+          <span>Not available yet</span>
+          <p>Sorry, we can’t ship to this country now. When available, we will notify you. Enter your details in Contact.</p>
+        </article>
+        <article>
+          <strong>United States</strong>
+          <span>Not available yet</span>
+          <p>Sorry, we can’t ship to this country now. When available, we will notify you. Enter your details in Contact.</p>
+        </article>
+        <article>
+          <strong>United Kingdom</strong>
+          <span>Not available yet</span>
+          <p>Sorry, we can’t ship to this country now. When available, we will notify you. Enter your details in Contact.</p>
+        </article>
+        <article>
+          <strong>Canada</strong>
+          <span>Not available yet</span>
+          <p>Sorry, we can’t ship to this country now. When available, we will notify you. Enter your details in Contact.</p>
+        </article>
+        <article>
+          <strong>Other countries</strong>
+          <span>Coming later</span>
+          <p>Sorry, we can’t ship outside Ghana now. When available, we will notify you. Enter your details in Contact.</p>
+        </article>
+      </div>
+      <button class="btn primary" type="button" onclick="document.getElementById('shippingModal')?.classList.remove('open');document.getElementById('shippingModal')?.setAttribute('aria-hidden','true');document.getElementById('contactModal')?.classList.add('open');document.getElementById('contactModal')?.setAttribute('aria-hidden','false')">Enter details in Contact</button>
+    </div>
+  </div>
+
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Shopping cart and checkout">
+    <div class="cart-header">
+      <div>
+        <p class="eyebrow">Your cart</p>
+        <h2>Checkout</h2>
+      </div>
+      <button class="cart-close" id="closeCart" type="button" aria-label="Close cart">×</button>
+    </div>
+
+    <p class="cart-empty" id="cartEmptyMessage">Your cart is empty. Add products from the Shop section.</p>
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-summary cart-totals">
+      <div class="cart-total-line cart-grand-total">
+        <span>Total</span>
+        <strong id="cartTotal">GH₵0</strong>
+      </div>
+    </div>
+    <p class="cart-small-note delivery-fee-note">Delivery fee applies to delivery orders and will be determined after checkout based on your location.</p>
+
+    <form class="checkout-form" id="checkoutForm">
+      <h3>Buyer information</h3>
+      <label>
+        Full name
+        <input type="text" name="customerName" placeholder="Your full name" required />
+      </label>
+      <label>
+        Phone / WhatsApp number
+        <input type="tel" name="customerPhone" placeholder="053 000 0000" required />
+      </label>
+
+      <fieldset class="checkout-options fulfillment-options">
+        <legend>Pickup or delivery</legend>
+        <div class="fulfillment-choice-row">
+          <label class="fulfillment-choice"><input type="radio" name="fulfillment" value="delivery" checked /> <span>Delivery</span></label>
+          <label class="fulfillment-choice"><input type="radio" name="fulfillment" value="pickup" /> <span>Pickup</span></label>
+        </div>
+      </fieldset>
+
+      <div id="deliveryFields" class="delivery-fields">
+<label>
+          Delivery address
+          <textarea name="deliveryAddress" rows="3" placeholder="Enter delivery address, area, landmark, city, and any useful directions"></textarea>
+        </label>
+      </div>
+<label>
+        Payment method
+        <select name="paymentMethod" id="paymentMethod" required>
+          <option value="card">Card</option>
+          <option value="momo">MoMo</option>
+          <option value="pay_on_pickup">Pay on pickup</option>
+        </select>
+      </label>
+
+      <label>
+        Extra notes
+        <textarea name="orderNotes" rows="3" placeholder="Any special request, scent preference, gift note, delivery time, etc."></textarea>
+      </label>
+
+      <button class="btn primary checkout-submit" type="submit">Proceed to Checkout</button>
+      <p class="payment-status" id="paymentStatus" aria-live="polite"></p>
+      <p class="payment-security-note">Scentivity does not collect card details, card PINs, or MoMo PINs on this website. Card and MoMo payments open through Paystack, a secure payment processor.</p>
+    </form>
+  </aside>
+
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="assets/scentivity-logo-fused.png" alt="Scentivity logo" />
+      <p>Everything Sweet Scented — perfumes, fragrance mists, body care essentials, home fragrances, and gift-ready products.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#products">Shop</a>
+      <button class="nav-preorder-button" type="button" onclick="document.getElementById('contactModal')?.classList.add('open');document.getElementById('contactModal')?.setAttribute('aria-hidden','false')">Preorder</button>
+      <button class="nav-catalogue-button" type="button" onclick="document.getElementById('catalogueModal')?.classList.add('open');document.getElementById('catalogueModal')?.setAttribute('aria-hidden','false')">Product Catalogue</button>
+      <button class="nav-about-button" type="button" onclick="document.getElementById('aboutModal')?.classList.add('open');document.getElementById('aboutModal')?.setAttribute('aria-hidden','false')">About</button>
+      <button class="cart-nav-button" id="cartToggleFooter" data-open-cart="true" type="button" aria-label="Open cart">Cart <span id="cartCountFooter" data-cart-count>0</span></button>
+    </nav>
+    <p class="copyright">© <span id="year"></span> Scentivity. All rights reserved.</p>
   </footer>
 
-  <button id="backToTopBtn" class="back-to-top" type="button" aria-label="Back to top">↑ Top</button>
-  <script src="app.js"></script>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Move back to the top of the page">↑</button>
+
+  <script src="script.js?v=customer-favorites-admin-toggle-20260609"></script>
+  <script src="scentivity-showcase-rescue-20260609.js?v=showcase-productpage-bottomnav-footer-fix-20260609"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+
+  <noscript>
+    <div style="position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:9999;background:#fff0f6;border:1px solid #e0005b;border-radius:14px;padding:12px;font-weight:700;color:#330014;">
+      JavaScript is required for the Scentivity product slideshow, filters, and cart. Please enable JavaScript.
+    </div>
+  </noscript>
+
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile quick navigation">
+    <a href="#products" aria-label="Shop products">
+      <span>⌕</span>
+      <small>Shop</small>
+    </a>
+    <a href="#featured-products" aria-label="Customer favorites">
+      <span>❤</span>
+      <small>Favorites</small>
+    </a>
+    <button type="button" id="mobileCartButton" data-open-cart="true" aria-label="Open cart">
+      <span>🛒</span>
+      <small>Cart</small>
+      <b id="mobileCartCount" data-cart-count>0</b>
+    </button>
+    <button type="button" id="mobileContactButton" aria-label="Contact Scentivity" onclick="document.getElementById('contactModal')?.classList.add('open');document.getElementById('contactModal')?.setAttribute('aria-hidden','false')"><span>☎</span><small>Contact</small></button>
+  </nav>
+
+
+  <script>
+    (() => {
+      const panel = document.getElementById('headerMenuPanel');
+      const toggle = document.getElementById('headerMenuToggle');
+      const closeButton = document.getElementById('headerMenuClose');
+
+      const setMenuOpen = (isOpen) => {
+        if (!panel || !toggle) return;
+        panel.classList.toggle('open', isOpen);
+        panel.setAttribute('aria-hidden', String(!isOpen));
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('header-menu-open', isOpen);
+      };
+
+      toggle?.addEventListener('click', () => setMenuOpen(true));
+      closeButton?.addEventListener('click', () => setMenuOpen(false));
+      panel?.addEventListener('click', (event) => {
+        if (event.target === panel) setMenuOpen(false);
+      });
+      panel?.querySelectorAll('a, button:not(#headerMenuClose)').forEach((item) => {
+        item.addEventListener('click', () => setMenuOpen(false));
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMenuOpen(false);
+      });
+    })();
+  </script>
+
+
+  <script>
+    (() => {
+      const menuSearchInput = document.getElementById('menuSearchInput');
+      const panel = document.getElementById('headerMenuPanel');
+      const toggle = document.getElementById('headerMenuToggle');
+
+      const closeMenu = () => {
+        panel?.classList.remove('open');
+        panel?.setAttribute('aria-hidden', 'true');
+        toggle?.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('header-menu-open');
+      };
+
+      menuSearchInput?.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter') return;
+        const value = menuSearchInput.value.trim();
+        const productSearch = document.getElementById('productSearch');
+        if (productSearch && value) {
+          productSearch.value = value;
+          productSearch.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        closeMenu();
+        document.getElementById('products')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    })();
+  </script>
+
+
+  <script>
+    (() => {
+      const panel = document.getElementById('headerMenuPanel');
+      const toggle = document.getElementById('headerMenuToggle');
+
+      window.scentivityCloseHeaderMenu = () => {
+        panel?.classList.remove('open');
+        panel?.setAttribute('aria-hidden', 'true');
+        toggle?.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('header-menu-open');
+      };
+
+      const closeModal = (modalId) => {
+        const modal = document.getElementById(modalId);
+        modal?.classList.remove('open');
+        modal?.setAttribute('aria-hidden', 'true');
+      };
+
+      const closeCart = () => {
+        document.getElementById('cartOverlay')?.classList.remove('visible');
+        document.getElementById('cartOverlay')?.setAttribute('aria-hidden', 'true');
+        document.getElementById('cartDrawer')?.classList.remove('open');
+        document.getElementById('cartDrawer')?.setAttribute('aria-hidden', 'true');
+      };
+
+      document.getElementById('closeAboutModal')?.addEventListener('click', () => closeModal('aboutModal'));
+      document.getElementById('closeContactModal')?.addEventListener('click', () => closeModal('contactModal'));
+      document.getElementById('closeCatalogueModal')?.addEventListener('click', () => closeModal('catalogueModal'));
+      document.getElementById('closeShippingModal')?.addEventListener('click', () => closeModal('shippingModal'));
+      document.getElementById('closeCart')?.addEventListener('click', closeCart);
+      document.getElementById('cartOverlay')?.addEventListener('click', closeCart);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        window.scentivityCloseHeaderMenu?.();
+        closeModal('aboutModal');
+        closeModal('contactModal');
+        closeModal('catalogueModal');
+        closeModal('shippingModal');
+        closeCart();
+      });
+    })();
+  </script>
+
+
+  <script>
+    (() => {
+      const menuButton = document.getElementById('headerMenuToggle');
+      const panel = document.getElementById('headerMenuPanel');
+      if (!menuButton || !panel) return;
+
+      const openMenuFast = (event) => {
+        if (event) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden', 'false');
+        menuButton.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('header-menu-open');
+      };
+
+      menuButton.addEventListener('pointerup', openMenuFast, { passive: false });
+      menuButton.addEventListener('touchend', openMenuFast, { passive: false });
+    })();
+  </script>
+
+
+  <script>
+    (() => {
+      const feedbackModal = document.getElementById('feedbackModal');
+      const closeFeedback = () => {
+        feedbackModal?.classList.remove('open');
+        feedbackModal?.setAttribute('aria-hidden', 'true');
+      };
+
+      document.getElementById('openFeedbackButton')?.addEventListener('click', () => {
+        window.scentivityCloseHeaderMenu?.();
+        feedbackModal?.classList.add('open');
+        feedbackModal?.setAttribute('aria-hidden', 'false');
+      });
+
+      document.getElementById('closeFeedbackModal')?.addEventListener('click', closeFeedback);
+      feedbackModal?.addEventListener('click', (event) => {
+        if (event.target === feedbackModal) closeFeedback();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeFeedback();
+      });
+    })();
+  </script>
 </body>
 </html>
