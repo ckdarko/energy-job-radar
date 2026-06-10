@@ -110,13 +110,20 @@ collections:
                 summary: "{{fields.name}}"
                 field: { label: "Subcategory Name", name: "name", widget: "string" }
 
+          - label: "Customer Favorites Note"
+            name: "customerFavoritesAdminNote"
+            widget: "markdown"
+            required: false
+            default: "To show a product in the homepage Customer favorites / Available favorites and coming-soon scents section, open the product below and turn ON: SHOW ON HOMEPAGE CUSTOMER FAVORITES / COMING SOON?"
+
           - label: "Products"
             name: "products"
             widget: "list"
-            summary: "{{fields.name}} — {{fields.mainCategory}} / {{fields.subCategory}} — {{fields.price}}"
+            summary: "{{fields.name}} — Homepage Favorites: {{fields.showInCustomerFavorites}} — {{fields.mainCategory}} / {{fields.subCategory}} — {{fields.price}}"
             collapsed: false
             fields:
               - { label: "Product Name", name: "name", widget: "string" }
+              - { label: "SHOW ON HOMEPAGE CUSTOMER FAVORITES / COMING SOON?", name: "showInCustomerFavorites", widget: "boolean", default: false, required: false, hint: "Turn ON only if this product should appear in the homepage section titled Customer favorites / Available favorites and coming-soon scents. Leave OFF to keep it only in the Shop/Product Catalogue." }
               - { label: "Brand", name: "brand", widget: "string", required: false, hint: "Example: Scentivity, Victoria's Secret, Bath & Body Works" }
               - { label: "Main Category", name: "mainCategory", widget: "string", hint: "Type the exact Category Name Used by Products from Product Catalogue / Categories. Example: Bath & Body Works Collection" }
               - { label: "Fragrance / Care Type", name: "subCategory", widget: "string", hint: "Type or add any subcategory. Example: Fine Fragrance Mist, Gift Sets, Body Care, Scented Candles" }
@@ -149,10 +156,6 @@ collections:
               - { label: "Fragrance Notes", name: "fragranceNotes", widget: "text", required: false }
               - { label: "Ingredients", name: "ingredients", widget: "text", required: false }
               - { label: "Show Product on Website", name: "showOnWebsite", widget: "boolean", default: true, required: false, hint: "Turn this off to hide the product from the homepage, shop, and product detail popup." }
-              - { label: "Show in Customer Favorites / Coming Soon Section", name: "showInCustomerFavorites", widget: "boolean", default: false, required: false, hint: "Turn this on only for products you want displayed in the homepage Customer favorites / Available favorites and coming-soon scents section." }
-
-
-
           - label: "Combo Deals"
             name: "combos"
             widget: "list"
