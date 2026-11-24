@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "last_updated": "2026-11-24T00:33:50.920059+00:00",
-    "total_jobs": 205,
+    "last_updated": "2026-11-24T22:53:43.877339+00:00",
+    "total_jobs": 206,
     "sources_enabled": [
       "Adzuna",
       "Company Watchlist",
@@ -19,8 +19,8 @@
     ],
     "source_counts_raw": {
       "Adzuna": 73,
-      "USAJOBS": 97,
-      "Greenhouse": 230,
+      "USAJOBS": 92,
+      "Greenhouse": 223,
       "Lever": 54,
       "Remotive": 150,
       "Arbeitnow": 600
@@ -578,14 +578,14 @@
       ]
     },
     {
-      "id": "58a78a6a8e388e50",
+      "id": "ed25896297813920",
       "title": "Subsurface Data Analyst / Power BI Analyst - Oil & Gas",
       "company": "Strategic Staffing Solutions",
       "location": "Miland, Sabine County",
       "source": "Adzuna",
-      "url": "https://www.adzuna.com/land/ad/5948388922?se=8uqlrZ7n8RGilc2_uuqYCA&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
-      "apply_url": "https://www.adzuna.com/land/ad/5948388922?se=8uqlrZ7n8RGilc2_uuqYCA&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
-      "source_url": "https://www.adzuna.com/land/ad/5948388922?se=8uqlrZ7n8RGilc2_uuqYCA&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
+      "url": "https://www.adzuna.com/land/ad/5948388922?se=Xig221no8RGJ3IkP01vxSg&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
+      "apply_url": "https://www.adzuna.com/land/ad/5948388922?se=Xig221no8RGJ3IkP01vxSg&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
+      "source_url": "https://www.adzuna.com/land/ad/5948388922?se=Xig221no8RGJ3IkP01vxSg&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
       "date_posted": "2026-10-31",
       "closing_date": null,
       "salary_min": 59763.41,
@@ -605,14 +605,14 @@
       ]
     },
     {
-      "id": "78288f89b97c1588",
+      "id": "3f781447962067b0",
       "title": "Subsurface Data Analyst / Power BI Analyst - Oil & Gas",
       "company": "Strategic Staffing Solutions",
       "location": "Miland, Sabine County",
       "source": "Adzuna",
-      "url": "https://www.adzuna.com/land/ad/5948388922?se=2lm9rZ7n8RG3obL8FeuK5Q&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
-      "apply_url": "https://www.adzuna.com/land/ad/5948388922?se=2lm9rZ7n8RG3obL8FeuK5Q&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
-      "source_url": "https://www.adzuna.com/land/ad/5948388922?se=2lm9rZ7n8RG3obL8FeuK5Q&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
+      "url": "https://www.adzuna.com/land/ad/5948388922?se=DvRL21no8RGws85x9n5EuQ&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
+      "apply_url": "https://www.adzuna.com/land/ad/5948388922?se=DvRL21no8RGws85x9n5EuQ&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
+      "source_url": "https://www.adzuna.com/land/ad/5948388922?se=DvRL21no8RGws85x9n5EuQ&utm_medium=api&utm_source=73a899c4&v=3674B69C4B578777126E5AF9CEFBDEF87CB90971",
       "date_posted": "2026-10-31",
       "closing_date": null,
       "salary_min": 59763.41,
@@ -801,6 +801,32 @@
       ]
     },
     {
+      "id": "4c2cd8da1557d236",
+      "title": "Geothermal Engineer",
+      "company": "Jobot",
+      "location": "Albuquerque, Bernalillo County",
+      "source": "Adzuna",
+      "url": "https://www.adzuna.com/details/5976987242?utm_medium=api&utm_source=73a899c4",
+      "apply_url": "https://www.adzuna.com/details/5976987242?utm_medium=api&utm_source=73a899c4",
+      "source_url": "https://www.adzuna.com/details/5976987242?utm_medium=api&utm_source=73a899c4",
+      "date_posted": "2026-11-24",
+      "closing_date": null,
+      "salary_min": 105000,
+      "salary_max": 295000,
+      "description": "We are seeking innovative geothermal engineers with a focus on commercial applications. This Jobot Job is hosted by: Tim Sargious Are you a fit? Easy Apply now by clicking the \"Quick Apply\" button and sending us your resume. Salary: $105,000 - $295,000 per year A bit about us: Our mission is to empower and benefit humanity through revolutionary solutions. We deploy our core high-pulsed power technology to deliver transformative and sustainable applications across the most energy-intensive indus…",
+      "query": "geothermal reservoir modeler",
+      "direct_url": true,
+      "link_type": "direct",
+      "fit_score": 71,
+      "role_family": "geothermal",
+      "match_reasons": [
+        "geothermal engineer",
+        "geothermal",
+        "reservoir",
+        "CV-matched title"
+      ]
+    },
+    {
       "id": "1906058b08991558",
       "title": "Senior CAD Specialist",
       "company": "Fervo Energy",
@@ -882,14 +908,14 @@
       ]
     },
     {
-      "id": "a5af56fc7dd72175",
+      "id": "f3bb970d5a7d0adf",
       "title": "Postdoctoral Research Associate in Chemical Design and Formulation of Densified Fluids for Superhot Geothermal Systems",
       "company": "Los Alamos National Laboratory",
       "location": "White Rock, Los Alamos County",
       "source": "Adzuna",
-      "url": "https://www.adzuna.com/land/ad/5924125630?se=-v99mp7n8RGilc2_uuqYCA&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
-      "apply_url": "https://www.adzuna.com/land/ad/5924125630?se=-v99mp7n8RGilc2_uuqYCA&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
-      "source_url": "https://www.adzuna.com/land/ad/5924125630?se=-v99mp7n8RGilc2_uuqYCA&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
+      "url": "https://www.adzuna.com/land/ad/5924125630?se=4PSoyVno8RGtv9F-yvC5dQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
+      "apply_url": "https://www.adzuna.com/land/ad/5924125630?se=4PSoyVno8RGtv9F-yvC5dQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
+      "source_url": "https://www.adzuna.com/land/ad/5924125630?se=4PSoyVno8RGtv9F-yvC5dQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
       "date_posted": "2026-10-12",
       "closing_date": null,
       "salary_min": 119366.72,
@@ -909,14 +935,14 @@
       ]
     },
     {
-      "id": "3a0ed0d35f2f41a5",
+      "id": "458ad057302a1ad2",
       "title": "Postdoctoral Research Associate in Chemical Design and Formulation of Densified Fluids for Superhot Geothermal Systems",
       "company": "Los Alamos National Laboratory",
       "location": "White Rock, Los Alamos County",
       "source": "Adzuna",
-      "url": "https://www.adzuna.com/land/ad/5924125630?se=Etf0op7n8RG7yJV5jZ9tQQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
-      "apply_url": "https://www.adzuna.com/land/ad/5924125630?se=Etf0op7n8RG7yJV5jZ9tQQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
-      "source_url": "https://www.adzuna.com/land/ad/5924125630?se=Etf0op7n8RG7yJV5jZ9tQQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
+      "url": "https://www.adzuna.com/land/ad/5924125630?se=VsBa0Vno8RGLYqZYfSmpUQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
+      "apply_url": "https://www.adzuna.com/land/ad/5924125630?se=VsBa0Vno8RGLYqZYfSmpUQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
+      "source_url": "https://www.adzuna.com/land/ad/5924125630?se=VsBa0Vno8RGLYqZYfSmpUQ&utm_medium=api&utm_source=73a899c4&v=86EB25590019427F989996FAECADDBC85DA1EBC3",
       "date_posted": "2026-10-12",
       "closing_date": null,
       "salary_min": 119366.72,
